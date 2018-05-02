@@ -1,0 +1,66 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer-siren-mixins/siren-entity-mixin.html">
+<link rel="import" href="../d2l-activity-details-ui/src/d2l-activity-details.html">
+<link rel="import" href="../d2l-navigation-menu/d2l-navigation-menu.html">
+<dom-module id="d2l-sequence-viewer">
+	<template>
+		<style>
+			:host {
+				display: block;
+			}
+			.column {
+				width: 25%;
+				position: fixed;
+				left: 0px;
+				top: 150px;
+				z-index: 100;
+				background: gray;
+			}
+
+		</style>
+		<title>[[title]]</title>
+		<div class="column">
+			<d2l-navigation-menu href="{{href}}" token="[[token]]">
+			</d2l-navigation-menu>
+		</div>
+		<div>
+		<d2l-activity-details
+			user-url="{{href}}"
+			get-token="[[getToken]]"
+			assignment-details-enabled="false"
+			user-activity-usage-href=""
+		></d2l-activity-details>
+		</div>
+	</template>
+
+	<script>
+		/*
+			@mixes SirenEntityMixin
+			@demo demos/index.html
+	    */
+		class D2LSequenceViewer extends D2L.Polymer.Mixins.SirenEntityMixin(Polymer.Element) {
+			static get is() {
+				return 'd2l-sequence-viewer';
+			}
+			static get properties() {
+				return {
+					title: {
+						type: Object,
+						computed: '_getTitle(entity)'
+					},
+					getToken: {
+						type: Object,
+						computed: '_getToken(token)'
+					}
+				};
+			}
+			_getTitle(entity) {
+				return entity && entity.properties && entity.properties.title || '';
+			}
+			_getToken(token) {
+				return () => { return Promise.resolve(token); };
+			}
+		}
+		customElements.define(D2LSequenceViewer.is, D2LSequenceViewer);
+	</script>
+</dom-module>
