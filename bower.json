@@ -3,7 +3,7 @@
   "description": "",
   "license": "Apache-2.0",
   "main": "d2l-sequence-viewer.html",
-  "homepage": "https://github.com/BrightspaceUI/sequence-viewer",
+  "homepage": "https://github.com/Brightspace/sequence-viewer",
   "ignore": [
     "test",
     ".editorconfig",

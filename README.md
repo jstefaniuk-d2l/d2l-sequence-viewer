@@ -2,9 +2,6 @@
 
 [Polymer](https://www.polymer-project.org)-based web component for D2L sequence-viewer.
 
-
-For further information on this and other Brightspace UI components, see the docs at [ui.developers.brightspace.com](http://ui.developers.brightspace.com/).
-
 ## Installation
 
 ```shell
