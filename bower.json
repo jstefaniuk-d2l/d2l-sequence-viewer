@@ -18,7 +18,9 @@
     "polymer": "Polymer/polymer#^2.0.0",
     "polymer-siren-mixins": "Brightspace/polymer-siren-mixins",
     "d2l-navigation-menu": "Brightspace/d2l-navigation-menu",
-    "d2l-activity-details-ui": "Brightspace/d2l-activity-details-ui#hybridize"
+    "d2l-activity-details-ui": "Brightspace/d2l-activity-details-ui#hybridize",
+    "d2l-sequences": "BrightspaceHypermediaComponents/sequences",
+    "d2l-organizations": "BrightspaceHypermediaComponents/organizations"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^3.0.0",
