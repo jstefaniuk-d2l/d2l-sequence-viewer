@@ -25,24 +25,24 @@
 			</style>
 		</custom-style>
 		<d2l-sequences-viewer-header
-			href="[[href]]"
+			href="{{currentActivity}}"
 			token="[[token]]">
 			<span class="uppercase" slot="d2l-course-name">
 					- [
 					<d2l-organization-name
-						href="[[href]]"
+						href="{{currentActivity}}"
 						token="[[token]]"
 					></d2l-organization-name>
 					]
 			</span>
 		</d2l-sequences-viewer-header>
 		<div class="column">
-			<d2l-root-navigation-menu href="{{href}}" token="[[token]]">
+			<d2l-root-navigation-menu href="[[href]]" token="[[token]]" current-activity="{{currentActivity}}">
 			</d2l-root-navigation-menu>
 		</div>
 		<div>
 		<d2l-activity-details
-			user-url="{{href}}"
+			user-url="[[currentActivity]]"
 			get-token="[[getToken]]"
 			assignment-details-enabled="false"
 			user-activity-usage-href=""
@@ -61,6 +61,9 @@
 			}
 			static get properties() {
 				return {
+					currentActivity: {
+						type: String
+					},
 					title: {
 						type: Object,
 						computed: '_getTitle(entity)'
@@ -71,6 +74,12 @@
 					}
 				};
 			}
+
+			ready() {
+				super.ready();
+				this.currentActivity = this.href;
+			}
+
 			_getTitle(entity) {
 				return entity && entity.properties && entity.properties.title || '';
 			}
