@@ -46,19 +46,19 @@
 				it('should have a sidebar element that shows/hides via clicking on the flyout-menu button', function(done) {
 					elem = fixture('basic');
 					var sidebar = elem.shadowRoot.querySelector('#sidebar');
-					expect( parseFloat(getComputedStyle(sidebar).marginLeft ).toFixed(0) ).to.equal('0');
+					assert( parseFloat(getComputedStyle(sidebar).marginLeft ) < 0.01 );
 
 					var button = elem.shadowRoot.querySelector('d2l-icon-button');
 					expect( button ).to.exist;
 					button.click();
 
 					setTimeout( function() {
-						expect( parseFloat(getComputedStyle(sidebar).marginRight ).toFixed(0) ).to.equal('0');
+						assert( parseFloat(getComputedStyle(sidebar).marginRight ) < 0.01 );
 						button.click();
 					}, 510); // time it takes to animate the hide sidebar transition
 
 					setTimeout( function() {
-						expect( parseFloat(getComputedStyle(sidebar).marginLeft ).toFixed(0) ).to.equal('0');
+						assert( parseFloat(getComputedStyle(sidebar).marginLeft ) < 0.01 );
 						done();
 					}, 1020); // time it takes for the sidebar to reappear
 				});
