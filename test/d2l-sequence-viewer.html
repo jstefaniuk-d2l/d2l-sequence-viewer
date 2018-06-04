@@ -23,7 +23,7 @@
 
 		<script>
 			describe('d2l-sequence-viewer', function() {
-				
+
 				var elem;
 
 				describe('basic', function() {
@@ -51,7 +51,7 @@
 					var button = elem.shadowRoot.querySelector('d2l-icon-button');
 					expect( button ).to.exist;
 					button.click();
-					
+
 					setTimeout( function() {
 						expect( getComputedStyle(sidebar).marginRight ).to.equal('0px');
 						button.click();
