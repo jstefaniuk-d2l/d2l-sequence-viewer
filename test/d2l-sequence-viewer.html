@@ -15,9 +15,17 @@
 			</template>
 		</test-fixture>
 
+		<test-fixture id="lesson">
+			<template>
+				<d2l-sequence-viewer href="data/lesson1.json" token="bamboozle"></d2l-sequence-viewer>
+			</template>
+		</test-fixture>
+
 		<script>
 			describe('d2l-sequence-viewer', function() {
+				
 				var elem;
+
 				describe('basic', function() {
 					it('should instantiate the element', function() {
 						elem = fixture('basic');
@@ -25,7 +33,37 @@
 						expect(elem.token).to.equal('foo');
 					});
 				});
+
+				// Sidebar Tests
+
+				it('should create sidebar element containing d2l-sequence-navigator', function() {
+					elem = fixture('basic');
+					var sidebar = elem.shadowRoot.querySelector('#sidebar');
+					expect( sidebar ).to.exist;
+					expect( sidebar.querySelector('d2l-sequence-navigator') ).to.exist;
+				});
+
+				it('should have a sidebar element that shows/hides via clicking on the flyout-menu button', function(done) {
+					elem = fixture('basic');
+					var sidebar = elem.shadowRoot.querySelector('#sidebar');
+					expect( getComputedStyle(sidebar).marginLeft ).to.equal('0px');
+
+					var button = elem.shadowRoot.querySelector('d2l-icon-button');
+					expect( button ).to.exist;
+					button.click();
+					
+					setTimeout( function() {
+						expect( getComputedStyle(sidebar).marginRight ).to.equal('0px');
+						button.click();
+					}, 510); // time it takes to animate the hide sidebar transition
+
+					setTimeout( function() {
+						expect( getComputedStyle(sidebar).marginLeft ).to.equal('0px');
+						done();
+					}, 1020); // time it takes for the sidebar to reappear
+				});
 			});
+
 		</script>
 	</body>
 </html>
