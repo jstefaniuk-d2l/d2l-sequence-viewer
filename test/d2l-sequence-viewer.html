@@ -32,19 +32,20 @@
 
 				it('should create sidebar element containing d2l-sequence-navigator', function() {
 					elem = fixture('basic');
-					var sidebar = elem.shadowRoot.querySelector('#sidebar');
+					const sidebar = elem.shadowRoot.querySelector('#sidebar');
 					expect( sidebar ).to.exist;
 					expect( sidebar.querySelector('d2l-sequence-navigator') ).to.exist;
 				});
 
 				it('should have a sidebar element that shows/hides via clicking on the flyout-menu button', function() {
 					elem = fixture('basic');
-					var button = elem.shadowRoot.querySelector('d2l-icon-button');
-					expect( elem.shadowRoot.querySelector('#sidebar.offscreen') ).to.not.exist;
+					const button = elem.shadowRoot.querySelector('d2l-icon-button');
+					const sidebar = elem.shadowRoot.querySelector('#sidebar');
+					assert.isNotTrue( sidebar.classList.contains('offscreen') );
 					button.click();
-					expect( elem.shadowRoot.querySelector('#sidebar.offscreen') ).to.exist;
+					assert.isTrue( sidebar.classList.contains('offscreen') );
 					button.click();
-					expect( elem.shadowRoot.querySelector('#sidebar.offscreen') ).to.not.exist;
+					assert.isNotTrue( sidebar.classList.contains('offscreen') );
 				});
 			});
 
