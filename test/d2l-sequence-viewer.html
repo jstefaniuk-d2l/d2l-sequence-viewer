@@ -37,24 +37,14 @@
 					expect( sidebar.querySelector('d2l-sequence-navigator') ).to.exist;
 				});
 
-				it('should have a sidebar element that shows/hides via clicking on the flyout-menu button', function(done) {
+				it('should have a sidebar element that shows/hides via clicking on the flyout-menu button', function() {
 					elem = fixture('basic');
-					var sidebar = elem.shadowRoot.querySelector('#sidebar');
-					assert( parseFloat(getComputedStyle(sidebar).marginLeft ) < 0.01 );
-
 					var button = elem.shadowRoot.querySelector('d2l-icon-button');
-					expect( button ).to.exist;
+					expect( elem.shadowRoot.querySelector('#sidebar.offscreen') ).to.not.exist;
 					button.click();
-
-					setTimeout( function() {
-						assert( parseFloat(getComputedStyle(sidebar).marginRight ) < 0.01 );
-						button.click();
-					}, 510); // time it takes to animate the hide sidebar transition
-
-					setTimeout( function() {
-						assert( parseFloat(getComputedStyle(sidebar).marginLeft ) < 0.01 );
-						done();
-					}, 1020); // time it takes for the sidebar to reappear
+					expect( elem.shadowRoot.querySelector('#sidebar.offscreen') ).to.exist;
+					button.click();
+					expect( elem.shadowRoot.querySelector('#sidebar.offscreen') ).to.not.exist;
 				});
 			});
 
