@@ -25,7 +25,7 @@
 				let header;
 				let topicName;
 
-				before( async() => {
+				before( async function() {
 					elem = await loadFixture('data/m2-activity2.json', 'lesson');
 					header = elem.shadowRoot.querySelector('d2l-sequence-viewer-header');
 					topicName = header.shadowRoot.querySelector('d2l-sequences-topic-name');
