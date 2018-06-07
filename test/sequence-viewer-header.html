@@ -6,14 +6,13 @@
 		<title>d2l-sequence-viewer test</title>
 		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 		<script src="../../web-component-tester/browser.js"></script>
+		<script src="loadFixture.js"></script>
 		<link rel="import" href="../d2l-sequence-viewer.html">
 	</head>
 	<body>
 		<test-fixture id="lesson">
 			<template>
 				<d2l-sequence-viewer
-					current-activity="data/m2-activity2.json"
-					href="data/m2-activity2.json"
 					token="foozleberries">
 				</d2l-sequence-viewer>
 			</template>
@@ -26,8 +25,8 @@
 				let header;
 				let topicName;
 
-				before( function() {
-					elem = fixture('lesson');
+				before( async() => {
+					elem = await loadFixture('data/m2-activity2.json', 'lesson');
 					header = elem.shadowRoot.querySelector('d2l-sequence-viewer-header');
 					topicName = header.shadowRoot.querySelector('d2l-sequences-topic-name');
 				});
