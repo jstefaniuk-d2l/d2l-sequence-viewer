@@ -20,55 +20,55 @@
 		</test-fixture>
 
 		<script>
-			describe('sequence-viewer-header', function() {
+			describe('sequence-viewer-header', () => {
 
-				const elem = fixture('lesson');
-				const header = elem.shadowRoot.querySelector('d2l-sequence-viewer-header');
-				const topicName = header.shadowRoot.querySelector('d2l-sequences-topic-name');
+				let elem;
+				let header;
+				let topicName;
+				let prevBtn;
+				let nextBtn;
+				let backBtn;
 
-				describe('lesson', function() {
+				before( function() {
+					elem = fixture('lesson');
+					header = elem.shadowRoot.querySelector('d2l-sequence-viewer-header');
+					topicName = header.shadowRoot.querySelector('d2l-sequences-topic-name');
+					prevBtn = header.shadowRoot.querySelector('.prev-button').shadowRoot.querySelector('d2l-icon-button');
+					nextBtn = header.shadowRoot.querySelector('.next-button').shadowRoot.querySelector('d2l-icon-button');
+					backBtn = header.shadowRoot.querySelector('.back-icon').shadowRoot.querySelector('d2l-icon-button');
+				});
 
-					it('should create a header and topic name element', function() {
-						expect( header ).to.exist;
-						expect( topicName ).to.exist;
+				it('should create a header with topic name and iterator buttons', function(done) {
+					expect(header).to.exist;
+					expect(topicName).to.exist;
+					expect(prevBtn).to.exist;
+					expect(nextBtn).to.exist;
+					expect(backBtn).to.exist;
+					
+					flush(function() {
 						expect( topicName.shadowRoot.innerHTML ).to.include('Zombies');
+						done();
 					});
+				});
 
-					it('should have a functional back button', function(done) {
-						const backBtn = header.shadowRoot.querySelector('.back-icon').shadowRoot.querySelector('d2l-icon-button');
-						expect(backBtn).to.exist;
-						console.log(topicName.shadowRoot.innerHTML)
+				it('should have a functional iterator buttons', function(done) {
+					
+					flush( function() {
+						
+						prevBtn.click();
+						expect(prevBtn.disabled).to.be.true;					
+						expect(topicName.shadowRoot.innerHTML).to.include('HTML Sample');
+
+						for(i=0; i<4; i++) {
+							nextBtn.click();
+						}
+						expect(nextBtn.disabled).to.be.true;
+						expect(topicName.shadowRoot.innerHTML).to.include('Google Optional Topic');
+
 						backBtn.click();
-						flush( function() {
-							expect( topicName.shadowRoot.innerHTML ).to.include('Module 2');
-							done();
-						});
+						expect( topicName.shadowRoot.innerHTML ).to.include('Module 2');
+						done();
 					});
-
-                    // it('should have a functional prev button', function() {
-                    //     flush(function() {
-                    //         elem = fixture('lesson');
-                    //         const header = elem.shadowRoot.querySelector('d2l-sequence-viewer-header');
-                    //         const topicName = header.shadowRoot.querySelector('d2l-sequences-topic-name');
-                    //         const prevBtn = header.shadowRoot.querySelector('.prev-icon').shadowRoot.querySelector('d2l-icon-button');
-                    //         expect( prevBtn ).to.exist;
-                    //         prevBtn.click();
-                    //         expect( topicName.shadowRoot.innerHTML ).to.include('HT3ML Sample');
-                    //     });
-                    // });
-
-                    // it('should have a functional next button', function() {
-                    //     flush(function() {
-                    //     elem = fixture('lesson');
-                    //         const header = elem.shadowRoot.querySelector('d2l-sequence-viewer-header');
-                    //         const topicName = header.shadowRoot.querySelector('d2l-sequences-topic-name');
-                    //         const nextBtn = header.shadowRoot.querySelector('.next-icon').shadowRoot.querySelector('d2l-icon-button');
-                    //         expect( nextBtn ).to.exist;
-                    //         nextBtn.click();
-                    //         expect( topicName.shadowRoot.innerHTML ).to.include('Wik3ipedia Log');
-                    //     });
-                    // });
-
 				});
 			});
 			
