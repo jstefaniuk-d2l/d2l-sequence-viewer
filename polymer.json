@@ -11,21 +11,10 @@
     "components/sequence-content-unknown.html"
   ],
   "sources": [
-    "bower_components/polymer-siren-mixins/*",
-    "bower_components/siren-entity/*",
-    "bower_components/d2l-sequences/*",
-    "bower_components/d2l-sequences/components/*",
-    "bower_components/d2l-organizations/*",
-    "bower_components/d2l-organizations/components/*",
-    "bower_components/d2l-sequence-navigator/*",
-    "bower_components/d2l-sequence-navigator/components/*",
-    "bower_components/d2l-sequence-navigator/utility/*",
     "bower.json",
     "locales.json"
   ],
   "extraDependencies": [
-    "bower_components/webcomponentsjs/webcomponents-lite.js",
-    "bower_components/d2l-typography/d2l-typography.scss",
-    "bower_components/d2l-colors/d2l-colors.scss"
+    "bower_components/webcomponentsjs/webcomponents-lite.js"
   ]
 }
