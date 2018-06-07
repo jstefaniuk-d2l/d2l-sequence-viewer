@@ -34,15 +34,15 @@
 						expect( topicName.shadowRoot.innerHTML ).to.include('Zombies');
 					});
 
-					it('should have a functional back button', function() {
+					it('should have a functional back button', function(done) {
 						const backBtn = header.shadowRoot.querySelector('.back-icon').shadowRoot.querySelector('d2l-icon-button');
-						//expect( backBtn ).to.exist;
-						backBtn.addEventListener('click', function() {
-							debugger;
-							expect( topicName.shadowRoot.innerHTML ).to.include('Zombasfdsdfies');
-						});
+						expect(backBtn).to.exist;
+						console.log(topicName.shadowRoot.innerHTML)
 						backBtn.click();
-						//expect( topicName.shadowRoot.innerHTML ).to.include('Module 2');
+						flush( function() {
+							expect( topicName.shadowRoot.innerHTML ).to.include('Module 2');
+							done();
+						});
 					});
 
                     // it('should have a functional prev button', function() {
