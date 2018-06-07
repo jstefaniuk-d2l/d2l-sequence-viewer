@@ -41,11 +41,11 @@
 					elem = fixture('basic');
 					const button = elem.shadowRoot.querySelector('d2l-icon-button');
 					const sidebar = elem.shadowRoot.querySelector('#sidebar');
-					assert.isNotTrue( sidebar.classList.contains('offscreen') );
+					expect( sidebar.classList.contains('offscreen') ).to.be.false;
 					button.click();
-					assert.isTrue( sidebar.classList.contains('offscreen') );
+					expect( sidebar.classList.contains('offscreen') ).to.be.true;
 					button.click();
-					assert.isNotTrue( sidebar.classList.contains('offscreen') );
+					expect( sidebar.classList.contains('offscreen') ).to.be.false;
 				});
 			});
 
