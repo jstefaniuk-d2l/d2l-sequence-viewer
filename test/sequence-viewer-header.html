@@ -44,7 +44,7 @@
 					expect(prevBtn).to.exist;
 					expect(nextBtn).to.exist;
 					expect(backBtn).to.exist;
-					
+
 					flush(function() {
 						expect( topicName.shadowRoot.innerHTML ).to.include('Zombies');
 						done();
@@ -52,14 +52,15 @@
 				});
 
 				it('should have a functional iterator buttons', function(done) {
-					
+
 					flush( function() {
-						
+
 						prevBtn.click();
-						expect(prevBtn.disabled).to.be.true;					
+						expect(prevBtn.disabled).to.be.true;
 						expect(topicName.shadowRoot.innerHTML).to.include('HTML Sample');
 
-						for(i=0; i<4; i++) {
+						let i;
+						for ( i = 0; i < 4; i++ ) {
 							nextBtn.click();
 						}
 						expect(nextBtn.disabled).to.be.true;
