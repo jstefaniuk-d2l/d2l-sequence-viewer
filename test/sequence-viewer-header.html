@@ -26,18 +26,17 @@
 				let header;
 				let topicName;
 
-				before( async function() {
+				beforeEach( async() => {
 					elem = await loadFixture('data/m2-activity2.json', 'lesson');
 					header = elem.shadowRoot.querySelector('d2l-sequence-viewer-header');
 					topicName = header.shadowRoot.querySelector('d2l-sequences-topic-name');
 				});
 
-				it('should create a header and topic name element', function(done) {
-					flush(function() {
+				it('should create a header and topic name element', function() {
+					flush(() => {
 						expect(header).to.exist;
 						expect(topicName).to.exist;
 						expect( topicName.shadowRoot.innerHTML ).to.include('Zombies');
-						done();
 					});
 				});
 
@@ -45,7 +44,7 @@
 					const prevBtn = header.shadowRoot.querySelector('.prev-button').shadowRoot.querySelector('d2l-icon-button');
 					expect(prevBtn).to.exist;
 					prevBtn.click();
-					flush( function() {
+					flush(() => {
 						expect(prevBtn.disabled).to.be.true;
 						expect(topicName.shadowRoot.innerHTML).to.include('HTML Sample');
 						done();
@@ -59,7 +58,7 @@
 					nextBtn.click();
 					nextBtn.click();
 					nextBtn.click();
-					flush( function() {
+					flush(() => {
 						expect(nextBtn.disabled).to.be.true;
 						expect(topicName.shadowRoot.innerHTML).to.include('Google Optional Topic');
 						done();
@@ -70,7 +69,7 @@
 					const backBtn = header.shadowRoot.querySelector('.back-icon').shadowRoot.querySelector('d2l-icon-button');
 					expect(backBtn).to.exist;
 					backBtn.click();
-					flush(function() {
+					flush(() => {
 						expect( topicName.shadowRoot.innerHTML ).to.include('Module 2');
 						done();
 					});
