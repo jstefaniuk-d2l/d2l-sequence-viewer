@@ -19,7 +19,7 @@
 		</test-fixture>
 
 		<script>
-			/* global SirenFixture */
+			/* global loadFixture */
 			describe('sequence-viewer-header', function() {
 
 				let elem;
@@ -27,7 +27,7 @@
 				let topicName;
 
 				before( async function() {
-					elem = await SirenFixture.load('data/unit2-activity2.json', fixture('lesson'));
+					elem = await loadFixture('data/m2-activity2.json', 'lesson');
 					header = elem.shadowRoot.querySelector('d2l-sequence-viewer-header');
 					topicName = header.shadowRoot.querySelector('d2l-sequences-topic-name');
 				});
