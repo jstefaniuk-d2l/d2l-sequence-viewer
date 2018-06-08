@@ -35,6 +35,9 @@
 					margin-left: 0px;
 					transition: margin-left 0.5s;
 				}
+				#sidebar.offscreen {
+					margin-left: -330px;
+				}
 				.viewer {
 					position: fixed;
 					top: 56px;
@@ -148,10 +151,10 @@
 				return '';
 			}
 			_slideSidebar() {
-				if ( getComputedStyle(this.$.sidebar).marginLeft === '0px' ) {
-					this.$.sidebar.style.marginLeft = '-330px';
+				if ( this.$.sidebar.classList.contains('offscreen') ) {
+					this.$.sidebar.classList.remove('offscreen');
 				} else {
-					this.$.sidebar.style.marginLeft = '0px';
+					this.$.sidebar.classList.add('offscreen');
 				}
 			}
 		}
