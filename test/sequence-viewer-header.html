@@ -33,9 +33,9 @@
 				});
 
 				it('should create a header and topic name element', function(done) {
-					expect(header).to.exist;
-					expect(topicName).to.exist;
 					flush(function() {
+						expect(header).to.exist;
+						expect(topicName).to.exist;
 						expect( topicName.shadowRoot.innerHTML ).to.include('Zombies');
 						done();
 					});
