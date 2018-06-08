@@ -40,38 +40,35 @@
 					});
 				});
 
-				it('should have a functional prev button', function(done) {
+				it('should have a functional prev button', function() {
+					flush(() => {
 					const prevBtn = header.shadowRoot.querySelector('.prev-button').shadowRoot.querySelector('d2l-icon-button');
 					expect(prevBtn).to.exist;
 					prevBtn.click();
-					flush(() => {
-						expect(prevBtn.disabled).to.be.true;
-						expect(topicName.shadowRoot.innerHTML).to.include('HTML Sample');
-						done();
+					expect(prevBtn.disabled).to.be.true;
+					expect(topicName.shadowRoot.innerHTML).to.include('HTML Sample');
 					});
 				});
 
-				it('should have a functional next button', function(done) {
-					const nextBtn = header.shadowRoot.querySelector('.next-button').shadowRoot.querySelector('d2l-icon-button');
-					expect(nextBtn).to.exist;
-					nextBtn.click();
-					nextBtn.click();
-					nextBtn.click();
-					nextBtn.click();
+				it('should have a functional next button', function() {
 					flush(() => {
+						const nextBtn = header.shadowRoot.querySelector('.next-button').shadowRoot.querySelector('d2l-icon-button');
+						expect(nextBtn).to.exist;
+						nextBtn.click();
+						nextBtn.click();
+						nextBtn.click();
+						nextBtn.click();
 						expect(nextBtn.disabled).to.be.true;
 						expect(topicName.shadowRoot.innerHTML).to.include('Google Optional Topic');
-						done();
 					});
 				});
 
-				it('should have a functional back button', function(done) {
-					const backBtn = header.shadowRoot.querySelector('.back-icon').shadowRoot.querySelector('d2l-icon-button');
-					expect(backBtn).to.exist;
-					backBtn.click();
+				it('should have a functional back button', function() {
 					flush(() => {
+						const backBtn = header.shadowRoot.querySelector('.back-icon').shadowRoot.querySelector('d2l-icon-button');
+						expect(backBtn).to.exist;
+						backBtn.click();				
 						expect( topicName.shadowRoot.innerHTML ).to.include('Module 2');
-						done();
 					});
 				});
 
