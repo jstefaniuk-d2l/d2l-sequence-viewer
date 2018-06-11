@@ -6,6 +6,7 @@
 		<title>d2l-sequence-viewer test</title>
 		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 		<script src="../../web-component-tester/browser.js"></script>
+		<script src="../node_modules/chai-dom/chai-dom.js"></script>
 		<link rel="import" href="../d2l-sequence-viewer.html">
 	</head>
 	<body>
@@ -16,42 +17,42 @@
 		</test-fixture>
 
 		<script>
-			describe('d2l-sequence-viewer', function() {
+			describe('d2l-sequence-viewer', () => {
 
 				let elem;
 
-				describe('basic', function() {
+				describe('basic', () => {
 
-					beforeEach( function() {
+					beforeEach( () => {
 						elem = fixture('basic');
 					});
 
-					it('should instantiate the element', function() {
-						expect(elem.href).to.equal('http://example.com');
-						expect(elem.token).to.equal('foo');
+					it('should instantiate the element', () => {
+						expect(elem).to.have.attribute('href', 'http://example.com');
+						expect(elem).to.have.attribute('token', 'foo');
 					});
 
 					describe('sidebar tests', () => {
 
 						let sidebar;
 
-						beforeEach( function() {
+						beforeEach( () => {
 							sidebar = elem.shadowRoot.querySelector('#sidebar');
 						});
 
-						it('should create sidebar element containing d2l-sequence-navigator', function() {
+						it('should create sidebar element containing d2l-sequence-navigator', () => {
 							expect( sidebar ).to.exist;
 							expect( sidebar.querySelector('d2l-sequence-navigator') ).to.exist;
 						});
 
-						it('should have a sidebar element that shows/hides via clicking on the flyout-menu button', function() {
+						it('should have a sidebar element that shows/hides via clicking on the flyout-menu button', () => {
 							const button = elem.shadowRoot.querySelector('d2l-icon-button');
 							expect( button ).to.exist;
-							expect( sidebar.classList.contains('offscreen') ).to.be.false;
+							expect( sidebar ).not.to.have.class('offscreen');
 							button.click();
-							expect( sidebar.classList.contains('offscreen') ).to.be.true;
+							expect( sidebar ).to.have.class('offscreen');
 							button.click();
-							expect( sidebar.classList.contains('offscreen') ).to.be.false;
+							expect( sidebar ).not.to.have.class('offscreen');
 						});
 					});
 
