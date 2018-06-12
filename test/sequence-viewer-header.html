@@ -6,7 +6,7 @@
 		<title>d2l-sequence-viewer test</title>
 		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 		<script src="../../web-component-tester/browser.js"></script>
-		<script src="loadFixture.js"></script>
+		<script src="../node_modules/polymer-siren-test-helpers/dist/index.js"></script>
 		<link rel="import" href="../d2l-sequence-viewer.html">
 	</head>
 	<body>
@@ -19,56 +19,56 @@
 		</test-fixture>
 
 		<script>
-			/* global loadFixture */
-			describe('sequence-viewer-header', function() {
+			/* global SirenFixture */
+			describe('sequence-viewer-header', () => {
 
 				let elem;
 				let header;
 				let topicName;
 
 				beforeEach( async() => {
-					elem = await loadFixture('data/m2-activity2.json', 'lesson');
+					elem = await SirenFixture.load('data/m2-activity2.json', fixture('lesson'));
 					header = elem.shadowRoot.querySelector('d2l-sequence-viewer-header');
 					topicName = header.shadowRoot.querySelector('d2l-sequences-topic-name');
 				});
 
-				it('should create a header and topic name element', function() {
+				it('should create a header and topic name element', () => {
 					flush(() => {
 						expect(header).to.exist;
 						expect(topicName).to.exist;
-						expect( topicName.shadowRoot.innerHTML ).to.include('Zombies');
+						expect( topicName.shadowRoot ).to.have.text('Zombies');
 					});
 				});
 
-				it('should have a functional prev button', function() {
+				it('should have a functional prev button', () => {
 					flush(() => {
-						const prevBtn = header.shadowRoot.querySelector('.prev-button').shadowRoot.querySelector('d2l-icon-button');
+						const prevBtn = header.shadowRoot.querySelector('.prev-button d2l-icon-button');
 						expect(prevBtn).to.exist;
 						prevBtn.click();
 						expect(prevBtn.disabled).to.be.true;
-						expect(topicName.shadowRoot.innerHTML).to.include('HTML Sample');
+						expect(topicName.shadowRoot).to.have.text('HTML Sample');
 					});
 				});
 
-				it('should have a functional next button', function() {
+				it('should have a functional next button', () => {
 					flush(() => {
-						const nextBtn = header.shadowRoot.querySelector('.next-button').shadowRoot.querySelector('d2l-icon-button');
+						const nextBtn = header.shadowRoot.querySelector('.next-button d2l-icon-button');
 						expect(nextBtn).to.exist;
 						nextBtn.click();
 						nextBtn.click();
 						nextBtn.click();
 						nextBtn.click();
 						expect(nextBtn.disabled).to.be.true;
-						expect(topicName.shadowRoot.innerHTML).to.include('Google Optional Topic');
+						expect(topicName.shadowRoot).to.have.text('Google Optional Topic');
 					});
 				});
 
-				it('should have a functional back button', function() {
+				it('should have a functional back button', () => {
 					flush(() => {
-						const backBtn = header.shadowRoot.querySelector('.back-icon').shadowRoot.querySelector('d2l-icon-button');
+						const backBtn = header.shadowRoot.querySelector('.back-icon d2l-icon-button');
 						expect(backBtn).to.exist;
 						backBtn.click();
-						expect( topicName.shadowRoot.innerHTML ).to.include('Module 2');
+						expect( topicName.shadowRoot ).to.have.text('Module 2');
 					});
 				});
 

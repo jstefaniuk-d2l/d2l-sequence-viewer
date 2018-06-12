@@ -7,6 +7,7 @@
 		<script src="../../webcomponentsjs/webcomponents-loader.js"></script>
 		<script src="../../web-component-tester/browser.js"></script>
 		<script src="../node_modules/polymer-siren-test-helpers/dist/index.js"></script>
+		<script src="../node_modules/chai-dom/chai-dom.js"></script>
 		<link rel="import" href="../../polymer/polymer.html">
 		<link rel="import" href="../components/sequence-content-file-download.html">
 	</head>
@@ -22,7 +23,7 @@
 				it('should have a form action matching the link href', async() => {
 					const element = await SirenFixture.load('data/activity-file-zip.json', fixture('FileFixture'));
 					const form = element.shadowRoot.querySelector('form');
-					expect(form.getAttribute('action')).to.equal('data/test.zip');
+					expect(form).to.have.attribute('action', 'data/test.zip');
 				});
 			});
 		</script>

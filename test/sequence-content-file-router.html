@@ -21,44 +21,45 @@
 			describe('d2l-sequence-content-file-router must create a d2l-sequence-content-file-html for registered mimetypes:', () => {
 				it('should handle text/html', async() => {
 					const element = await loadFileWithDelay('data/activity-file-html.json');
-					expect(element.shadowRoot.childNodes[0].tagName.toLowerCase()).to.equal('d2l-sequence-content-file-html');
+					expect(element.shadowRoot.querySelector('d2l-sequence-content-file-html')).to.exist;
 				});
 
 				it('should handle application/pdf', async() => {
 					const element = await loadFileWithDelay('data/activity-file-pdf.json');
-					expect(element.shadowRoot.childNodes[0].tagName.toLowerCase()).to.equal('d2l-sequence-content-file-html');
+					expect(element.shadowRoot.querySelector('d2l-sequence-content-file-html')).to.exist;
 				});
 
 				it('should handle image/bmp', async() => {
 					const element = await loadFileWithDelay('data/activity-file-bmp.json');
-					expect(element.shadowRoot.childNodes[0].tagName.toLowerCase()).to.equal('d2l-sequence-content-file-html');
+					expect(element.shadowRoot.querySelector('d2l-sequence-content-file-html')).to.exist;
 				});
 
 				it('should handle image/gif', async() => {
 					const element = await loadFileWithDelay('data/activity-file-gif.json');
-					expect(element.shadowRoot.childNodes[0].tagName.toLowerCase()).to.equal('d2l-sequence-content-file-html');
+					expect(element.shadowRoot.querySelector('d2l-sequence-content-file-html')).to.exist;
 				});
 
 				it('should handle image/jpeg', async() => {
 					const element = await loadFileWithDelay('data/activity-file-jpeg.json');
-					expect(element.shadowRoot.childNodes[0].tagName.toLowerCase()).to.equal('d2l-sequence-content-file-html');
+					expect(element.shadowRoot.querySelector('d2l-sequence-content-file-html')).to.exist;
 				});
 
 				it('should handle image/png', async() => {
 					const element = await loadFileWithDelay('data/activity-file-png.json');
-					expect(element.shadowRoot.childNodes[0].tagName.toLowerCase()).to.equal('d2l-sequence-content-file-html');
+					expect(element.shadowRoot.querySelector('d2l-sequence-content-file-html')).to.exist;
 				});
 
 				it('should handle image/svg+xml', async() => {
 					const element = await loadFileWithDelay('data/activity-file-svg.json');
-					expect(element.shadowRoot.childNodes[0].tagName.toLowerCase()).to.equal('d2l-sequence-content-file-html');
+					expect(element.shadowRoot.querySelector('d2l-sequence-content-file-html')).to.exist;
 				});
 			});
 
 			describe('d2l-sequence-content-file-router must create a d2l-sequence-content-file-download for unregistered mimetypes:', () => {
 				it('such as application/zip', async() => {
 					const element = await loadFileWithDelay('data/activity-file-zip.json');
-					expect(element.shadowRoot.childNodes[0].tagName.toLowerCase()).to.equal('d2l-sequence-content-file-download');
+					expect(element.shadowRoot.querySelector('d2l-sequence-content-file-html')).not.to.exist;
+					expect(element.shadowRoot.querySelector('d2l-sequence-content-file-download')).to.exist;
 				});
 			});
 
