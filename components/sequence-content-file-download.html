@@ -2,14 +2,67 @@
 <link rel="import" href="../bower_components/polymer-siren-mixins/siren-entity-mixin.html">
 
 <dom-module id="d2l-sequence-content-file-download">
-    <template>
-        Download your file...
-        <template is="dom-if" if="[[_fileLocation]]">
-            <form method="get" action$="[[_fileLocation]]">
-                <button type="submit">Download</button>
-            </form>
-        </template>
-    </template>
+	<template>
+		<style>
+			:host {
+				display: block;
+				font-family: 'Lato', sans-serif;
+				color: var(--d2l-color-ferrite);
+
+				/* Body Text - Lato Regular 19 */
+				font-size: 19px;
+				line-height: 24px;
+				font-weight: 400; /* normal */
+				letter-spacing: 0.2px;
+			}
+
+			.container {
+				padding-top: 100px;
+				text-align: center;
+			}
+
+			.heading3 {
+				/* Heading 3 - Lato Bold 20 */
+				font-size: 20px;
+				line-height: 30px;
+				font-weight: 700; /* bold */
+				letter-spacing: 0.2px;
+			}
+
+			.title {
+				color: var(--d2l-color-celestine-plus-1);
+				margin-bottom: 10px;
+			}
+
+			.file-icon {
+				background-image: url('../images/file-icon.svg');
+				width: 163px;
+				height: 125px;
+				margin: 50px auto;
+			}
+
+			.download-button {
+				background-color: var(--d2l-color-celestine);
+				border: 1px solid var(--d2l-color-celestine-minus-1);
+				color: white;
+				border-radius: 8px;
+				width: 257px;
+				height: 52px;
+				margin-top: 50px;
+			}
+		</style>
+		<div class="container">
+			<div class="title heading3">This kind of file can't be opened in this viewer</div>
+			<div>Download and view the file in another application instead.</div>
+			<div class="file-icon"></div>
+			<div>File size: [unknown]</div>
+			<template is="dom-if" if="[[_fileLocation]]">
+				<form method="get" action$="[[_fileLocation]]">
+					<button type="submit" class="download-button heading3">Download</button>
+				</form>
+			</template>
+		</div>
+	</template>
 
     <script>
 		/*

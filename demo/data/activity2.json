@@ -1,6 +1,6 @@
 {
 	"properties": {
-		"title": "Algebra"
+		"title": "Algebra is a very very very very very long topic"
 	},
 	"entities": [
 		{
@@ -77,6 +77,9 @@
 	}, {
 		"rel": ["prev"],
 		"href": "data/activity1.json"
+	}, {
+		"rel": ["next"],
+		"href": "data/activity3.json"
 	}, {
 		"rel": ["up"],
 		"href": "data/l1-module1.json"
