@@ -24,9 +24,6 @@
 				padding-bottom: 10px;
 				background-color: white;
 			}
-			.back-icon {
-				padding-bottom: 2px;
-			}
 			.iterator-icon {
 				width: 28px;
 				height: 28px;
@@ -146,13 +143,10 @@
 			<div class="col3"></div>
 			<d2l-icon class="flyout-divider hidden-small col4" icon="d2l-tier2:divider-big"></d2l-icon>
 			<div class="col5"></div>
-			<d2l-sequences-iterator
-				class="back-icon hidden-small col6"
-				href="{{href}}"
-				token="[[token]]"
-				icon="d2l-tier1:chevron-left"
-				up
-			></d2l-sequences-iterator>
+			<div class="col6">
+				<slot name="back-button">
+				</slot>
+			</div>
 			<div class="back-to-module hidden-small col7">
 				<slot name="d2l-back-to-module"></slot>
 			</div>

@@ -16,6 +16,12 @@
 			</template>
 		</test-fixture>
 
+		<test-fixture id="withReturnUrl">
+			<template>
+				<d2l-sequence-viewer return-url="https://www.google.ca" href="http://example.com" token="foo"></d2l-sequence-viewer>
+			</template>
+		</test-fixture>
+
 		<script>
 			describe('d2l-sequence-viewer', () => {
 
@@ -59,7 +65,20 @@
 					it('should show the content router component', () => {
 						const contentRouter = elem.shadowRoot.querySelector('.viewer');
 						expect(contentRouter).to.exist;
+					});
+				});
 
+				describe('back button', () => {
+					it('should be visible when given return url', () => {
+						elem = fixture('withReturnUrl');
+						const button = elem.shadowRoot.querySelector('.back-icon');
+						expect( button ).not.to.have.class('hide');
+					});
+
+					it('should not be visible when no return url given', () => {
+						elem = fixture('basic');
+						const button = elem.shadowRoot.querySelector('.back-icon');
+						expect( button ).to.have.class('hide');
 					});
 				});
 
