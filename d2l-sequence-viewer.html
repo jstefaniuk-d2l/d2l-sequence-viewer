@@ -15,6 +15,9 @@
 				:host {
 					display: block;
 				}
+				.back-icon {
+					padding-bottom: 2px;
+				}
 				.topbar {
 					position: fixed;
 					top: 0px;
@@ -62,6 +65,15 @@
 			<span slot="d2l-flyout-menu">
 				<d2l-icon-button icon="d2l-tier3:menu" on-click="_toggleSlideSidebar"></d2l-icon-button>
 			</span>
+			<span slot="back-button">
+				<d2l-icon-button
+					class$="[[backButtonClass]]"
+					icon="d2l-tier1:chevron-left"
+					type="button"
+					text="Activity"
+					on-click="_onClickBack"
+				></d2l-icon-button>
+			</span>
 			<span slot="d2l-back-to-module">[[localize('backToModule', 'module', _moduleName, 'course', _courseName)]]</span>
 		</d2l-sequence-viewer-header>
 		<div id="sidebar">
@@ -97,6 +109,14 @@
 					getToken: {
 						type: Object,
 						computed: '_getToken(token)'
+					},
+					backButtonClass: {
+						type: String,
+						computed: '_backButtonClass(returnUrl)'
+					},
+					returnUrl: {
+						type: String,
+						value: false
 					},
 					moduleHref: {
 						type: Object,
@@ -135,6 +155,9 @@
 					this.$.sidebar.classList.add('offscreen');
 				}
 			}
+			_onClickBack() {
+				window.location.href = this.returnUrl;
+			}
 			_getHrefByRel(entity, relation) {
 				const link = entity.getLinkByRel(relation);
 				return link && link.href || '';
@@ -155,6 +178,11 @@
 				}
 				this._intermediateOrganizationHref = upLink.href;
 				return '';
+			}
+			_backButtonClass(returnUrl) {
+				return !returnUrl
+					? 'back-icon hide'
+					: 'back-icon';
 			}
 			_toggleSlideSidebar() {
 				if ( this.$.sidebar.classList.contains('offscreen') ) {
