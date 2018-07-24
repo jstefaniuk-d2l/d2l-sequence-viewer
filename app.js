@@ -34,8 +34,11 @@
 					var token = vars[3] || '';
 					var  el = document.getElementById('sqv');
 					var href = vars[0] && vars[0].href || '';
+					var returnUrl = vars[0] && vars[0].returnUrl || '';
+
 					el.setAttribute('token', token);
 					el.setAttribute('href', href);
+					el.setAttribute('return-url', returnUrl);
 					var initializeEvent = JSON.stringify({
 						'eventType': 'initialize'
 					});

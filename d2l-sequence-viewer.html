@@ -171,9 +171,23 @@
 				}
 			}
 			_onClickBack() {
-				if ( this.returnUrl ) {
-					window.location.href = this.returnUrl;
+				if ( !this.returnUrl ) {
+					console.log('no returnUrl')
+					return;
 				}
+
+				if ( window.parent === window ) {
+					console.log('no window.parent')
+					window.location.href = this.returnUrl;
+					return;
+				}
+
+				console.log('postMessage', window.parent)
+				// If we're in an iframe we need to post a message to do the navigation for us
+				window.parent.postMessage(JSON.stringify({
+					eventType: 'd2l-sequence-viewer-return',
+					returnUrl: this.returnUrl
+				}), '*');
 			}
 			_getHrefByRel(entity, relation) {
 				const link = entity.getLinkByRel(relation);
