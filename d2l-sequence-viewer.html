@@ -172,17 +172,14 @@
 			}
 			_onClickBack() {
 				if ( !this.returnUrl ) {
-					console.log('no returnUrl')
 					return;
 				}
 
 				if ( window.parent === window ) {
-					console.log('no window.parent')
 					window.location.href = this.returnUrl;
 					return;
 				}
 
-				console.log('postMessage', window.parent)
 				// If we're in an iframe we need to post a message to do the navigation for us
 				window.parent.postMessage(JSON.stringify({
 					eventType: 'd2l-sequence-viewer-return',
