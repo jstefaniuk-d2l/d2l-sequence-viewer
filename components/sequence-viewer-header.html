@@ -211,9 +211,8 @@
 				this.mode = 'polite';
 			}
 			_announceTopic() {
-				var self = this;
 				this.fire('iron-announce', {
-					text: self.$.topicName.innerText.trim()
+					text: this.$.topicName.innerText.trim()
 				});
 			}
         }

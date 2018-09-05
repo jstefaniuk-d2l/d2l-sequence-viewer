@@ -192,9 +192,7 @@
 				this._blurListener = null;
 			}
 			_closeSlidebar() {
-				if ( !this.$.sidebar.classList.contains('offscreen') ) {
-					this.$.sidebar.classList.add('offscreen');
-				}
+				this.$.sidebar.classList.add('offscreen')
 			}
 			_onClickBack() {
 				if ( !this.returnUrl ) {
@@ -244,11 +242,7 @@
 					: 'back-text';
 			}
 			_toggleSlideSidebar() {
-				if ( this.$.sidebar.classList.contains('offscreen') ) {
-					this.$.sidebar.classList.remove('offscreen');
-				} else {
-					this.$.sidebar.classList.add('offscreen');
-				}
+				this.$.sidebar.classList.toggle('offscreen')
 			}
 		}
 		customElements.define(D2LSequenceViewer.is, D2LSequenceViewer);
