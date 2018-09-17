@@ -35,6 +35,15 @@
 					z-index: 2;
 					box-shadow: 2px 0px 3px 2px rgba(214,220,229,0.5); /* 50% D6DCE5 */
 				}
+				#sidebar-occlude {
+					width: calc(50% - 615px - 2px);
+					height: 100%;
+					background: white;
+					position: fixed;
+					top: 58px;
+					left: 0px;
+					z-index: 2;
+				}
 				#sidebar {
 					width: 330px;
 					position: fixed;
@@ -44,7 +53,7 @@
 					padding: 0px;
 					background: linear-gradient(to right, #F9FAFC, #FFFFFF);
 					box-shadow: 0px 2px 3px 2px rgba(214,220,229,0.5); /* 50% D6DCE5 */
-					margin-left: 0px;
+					left: calc(50% - 615px);
 					transition: margin-left 0.5s;
 				}
 				#sidebar.offscreen {
@@ -71,6 +80,16 @@
 				}
 				.toastName {
 					font-weight: bold;
+				}
+				@media(max-width: 1230px) {
+					#sidebar {
+						left: 0px;
+					}
+				}
+				@media(max-width: 720px) {
+					#sidebar {
+						left: 0px;
+					}
 				}
 			</style>
 		</custom-style>
@@ -102,6 +121,8 @@
 				[[localize('backToModule', 'module', _moduleName, 'course', _courseName)]]
 			</span>
 		</d2l-sequence-viewer-header>
+		<div id="sidebar-occlude">
+		</div>
 		<div id="sidebar">
 			<d2l-sequence-navigator
 				href="{{href}}"
