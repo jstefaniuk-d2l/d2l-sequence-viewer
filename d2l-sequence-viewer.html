@@ -110,7 +110,7 @@
 					type="button"
 					text="Activity"
 					on-click="_onClickBack"
-				>[[localize('backToModule', 'module', _moduleName, 'course', _courseName)]]</d2l-icon-button>
+				>[[localize('backToModule')]]</d2l-icon-button>
 			</span>
 			<span
 				class$="[[backTextClass]]"
@@ -118,7 +118,7 @@
 				on-click="_onClickBack"
 				tabindex="-1"
 			>
-				[[localize('backToModule', 'module', _moduleName, 'course', _courseName)]]
+				[[localize('backToModule')]]
 			</span>
 		</d2l-sequence-viewer-header>
 		<div id="sidebar-occlude">
@@ -195,9 +195,12 @@
 						type: String,
 						computed: '_backTextClass(returnUrl)'
 					},
+					// holds the address of the page that launched ASV
+					// The "back to content home" and "I'm done" buttons
+					// will take the user to this address.
 					returnUrl: {
 						type: String,
-						value: false
+						value: document.referrer
 					},
 					moduleHref: {
 						type: Object,
@@ -231,7 +234,7 @@
 					isEndOfLesson: {
 						type: Boolean,
 						computed: '_isEndOfLesson(entity)'
-					}
+					},
 				};
 			}
 			static get observers() {
