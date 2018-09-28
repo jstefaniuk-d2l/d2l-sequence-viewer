@@ -239,6 +239,11 @@
 			}
 			_initialize(href) {
 				this._intermediateOrganizationHref = href;
+
+				// change the current address to display the url of the item being currently viewed.
+				history.pushState({
+					title: this.title,
+				}, this.title, '?url=' + encodeURIComponent(href) || '');
 			}
 			_isEndOfLesson(entity) {
 				return entity && entity.hasClass('end-of-sequence');
