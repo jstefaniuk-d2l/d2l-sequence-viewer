@@ -23,6 +23,9 @@
 		</test-fixture>
 
 		<script>
+			// set document.value = '' for purposes of the following tests.
+			Object.defineProperty( document, 'referrer', { configurable: true, get : function() { return ''; } } );
+
 			describe('d2l-sequence-viewer', () => {
 
 				let elem;
