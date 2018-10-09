@@ -102,10 +102,12 @@
 				}
 			</style>
 		</custom-style>
-		<d2l-sequence-viewer-header class="topbar"
+		<d2l-sequence-viewer-header
+			class="topbar"
 			href="{{href}}"
 			token="[[token]]"
-			role="banner">
+			role="banner"
+			on-iterate="_onIterate">
 			<span slot="d2l-flyout-menu">
 				<d2l-navigation-button-notification-icon
 					icon="d2l-tier3:menu"
@@ -143,7 +145,7 @@
 				role="navigation"
 			></d2l-sequence-navigator>
 		</div>
-		<div class="viewframe" on-click="_closeSlidebar" role="main" tabindex="0">
+		<div id="viewframe" class="viewframe" on-click="_closeSlidebar" role="main" tabindex="0">
 			<template is="dom-if" if="[[isEndOfLesson]]">
 				<d2l-sequences-content-eol-main
 					class="viewer"
@@ -154,6 +156,7 @@
 			</template>
 			<template is="dom-if" if="[[!isEndOfLesson]]">
 				<d2l-sequences-content-router
+					id="viewer"
 					class="viewer"
 					href="[[href]]"
 					token="[[token]]"
@@ -225,7 +228,7 @@
 					isEndOfLesson: {
 						type: Boolean,
 						computed: '_isEndOfLesson(entity)'
-					},
+					}
 				};
 			}
 			static get observers() {
@@ -292,6 +295,9 @@
 					eventType: 'd2l-sequence-viewer-return',
 					returnUrl: this.returnUrl
 				}), '*');
+			}
+			_onIterate() {
+				this.$.viewframe.focus();
 			}
 			_getTitle(entity) {
 				return entity && entity.properties && entity.properties.title || '';
