@@ -127,7 +127,7 @@
 					text="Activity"
 					on-click="_onClickBack"
 				>[[localize('backToContent')]]
-				
+
 				</d2l-navigation-button-notification-icon>
 			</span>
 			<span
@@ -217,7 +217,7 @@
 					// will take the user to this address.
 					returnUrl: {
 						type: String,
-						computed: '_getReturnUrl()'
+						computed: '_getReturnUrl(entity)'
 					},
 					toast: {
 						type: Object,
@@ -247,8 +247,9 @@
 			// if a return-url parameter was passed when creating the element
 			// then returnUrl should have that value. If not, returnUrl should
 			// be document.referrer.
-			_getReturnUrl() {
-				return this.returnUrl || document.referrer || '';
+			_getReturnUrl(entity) {
+				const defaultReturnUrl = entity && entity.getLinkByRel('default-return-url') || '';
+				return this.returnUrl || document.referrer || defaultReturnUrl || '';
 			}
 			_isEndOfLesson(entity) {
 				return entity && entity.hasClass('end-of-sequence');
