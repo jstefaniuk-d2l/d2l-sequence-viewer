@@ -119,25 +119,25 @@
 				>[[localize('toggleNavMenu')]]
 				</d2l-navigation-button-notification-icon>
 			</span>
-			<span slot="back-button">
+			<d2l-link
+				slot="back-button"
+				on-click="_onClickBack">
 				<d2l-navigation-button-notification-icon
 					class$="[[backButtonClass]]"
 					icon="d2l-tier1:chevron-left"
 					type="button"
 					text="Activity"
-					on-click="_onClickBack"
 				>[[localize('backToContent')]]
-				
 				</d2l-navigation-button-notification-icon>
-			</span>
-			<span
+			</d2l-link>
+			<d2l-link
 				class$="[[backTextClass]]"
 				slot="d2l-back-to-module"
 				on-click="_onClickBack"
 				tabindex="-1"
 			>
 				[[localize('backToContent')]]
-			</span>
+			</d2l-link>
 		</d2l-sequence-viewer-header>
 		<div id="sidebar-occlude">
 		</div>
