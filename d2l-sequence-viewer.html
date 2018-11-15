@@ -248,7 +248,9 @@
 			// then returnUrl should have that value. If not, returnUrl should
 			// be document.referrer.
 			_getReturnUrl(entity) {
-				const defaultReturnUrl = entity && entity.getLinkByRel('default-return-url') || '';
+				const defaultReturnUrl = entity && entity.getLinkByRel('https://api.brightspace.com/rels/default-return-url') || '';
+				console.log(this.href);
+				console.log(defaultReturnUrl);
 				return this.returnUrl || document.referrer || defaultReturnUrl || '';
 			}
 			_isEndOfLesson(entity) {
