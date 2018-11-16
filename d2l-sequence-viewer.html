@@ -118,18 +118,18 @@
 				>[[localize('toggleNavMenu')]]
 				</d2l-navigation-button-notification-icon>
 			</span>
-			<d2l-link
-				slot="back-button"
-				on-click="_onClickBack">
+			<span
+				slot="back-button">
 				<d2l-navigation-button-notification-icon
 					class$="[[backButtonClass]]"
 					icon="d2l-tier1:chevron-left"
 					type="button"
 					text="[[localize('activity')]]"
+					on-click="_onClickBack"
 					tabindex="-1"
 				>[[localize('backToContent')]]
 				</d2l-navigation-button-notification-icon>
-			</d2l-link>
+			</span>
 			<d2l-link
 				class$="[[backTextClass]]"
 				slot="d2l-back-to-module"
