@@ -144,7 +144,22 @@
 				href="{{href}}"
 				token="[[token]]"
 				role="navigation"
-			></d2l-sequence-navigator>
+			>
+			<span slot="lesson-header">
+				<d2l-lesson-header id="sidebarHeader"
+					href="[[_rootHref]]"
+					current-activity="{{href}}"
+					token="[[token]]"
+					current-activity="{{href}}"
+					tabindex="0"
+				></d2l-lesson-header>
+			</span>
+			<span slot="end-of-lesson">
+				<div class="end-of-lesson-holder">
+					<a on-click="showEndOfLesson" class="end-of-lesson">[[localize('endOfLesson')]]</a>
+				</div>
+			</span>
+		</d2l-sequence-navigator>
 		</div>
 		<div id="viewframe" class="viewframe" on-click="_closeSlidebar" role="main" tabindex="0">
 			<d2l-sequences-content-router
