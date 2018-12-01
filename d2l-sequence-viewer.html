@@ -9,6 +9,8 @@
 <link rel="import" href="./bower_components/d2l-alert/d2l-alert-toast.html">
 <link rel="import" href="./bower_components/d2l-link/d2l-link.html">
 <link rel="import" href="./bower_components/d2l-navigation/d2l-navigation-button-notification-icon.html">
+<link rel="import" href="./bower_components/d2l-navigation/d2l-navigation-band.html">
+<link rel="import" href="./bower_components/d2l-navigation/d2l-navigation-link-back.html">
 <link rel="import" href="./bower_components/d2l-sequence-navigator/components/d2l-lesson-header.html">
 
 <dom-module id="d2l-sequence-viewer">
@@ -26,14 +28,11 @@
 					font-size: 0px;
 					display: inline-block;
 				}
-				.back-text:hover {
-					cursor: pointer;
-				}
 				.topbar {
 					position: fixed;
-					top: 0px;
+					top: 4px;
 					left: -10px;
-					width: calc(100% + 10px);
+					width: calc(100% + 10px - 4px);
 					height: 30px;
 					z-index: 3;
 					box-shadow: 2px 0px 3px 2px rgba(214,220,229,0.5); /* 50% D6DCE5 */
@@ -72,7 +71,7 @@
 					overflow-y: auto;
 				}
 				.viewframe {
-					height: calc(100vh - 40px - 8px);
+					height: calc(100vh - 40px - 8px - 4px);
 					max-width: 1230px;
 					margin: auto;
 				}
@@ -111,8 +110,12 @@
 						left: 0px;
 					}
 				}
+				d2l-navigation-link-back {
+					height: 50px;
+				}
 			</style>
 		</custom-style>
+		<d2l-navigation-band></d2l-navigation-band>
 		<d2l-sequence-viewer-header
 			class="topbar"
 			href="{{href}}"
@@ -127,24 +130,13 @@
 				>[[localize('toggleNavMenu')]]
 				</d2l-navigation-button-notification-icon>
 			</span>
-			<span slot="back-button">
-				<d2l-navigation-button-notification-icon
-					class$="[[backButtonClass]]"
-					icon="d2l-tier1:chevron-left"
-					type="button"
-					text="[[localize('activity')]]"
+			<div slot="d2l-back-to-module">
+				<d2l-navigation-link-back text="[[localize('backToContent')]]"
 					on-click="_onClickBack"
-					tabindex="-1"
-				>[[localize('backToContent')]]
-				</d2l-navigation-button-notification-icon>
-			</span>
-			<d2l-link
-				class$="[[backTextClass]]"
-				slot="d2l-back-to-module"
-				on-click="_onClickBack"
-			>
-				[[localize('backToContent')]]
-			</d2l-link>
+					href="[[returnUrl]]"
+					>
+				</d2l-navigation-link-back>
+			</div>
 		</d2l-sequence-viewer-header>
 		<div id="sidebar-occlude">
 		</div>
@@ -173,6 +165,7 @@
 			<d2l-sequences-content-router
 				id="viewer"
 				class="viewer"
+				on-sequences-return-mixin-click-back="_onClickBack"
 				href="{{href}}"
 				token="[[token]]"
 			></d2l-sequences-content-router>
@@ -219,14 +212,7 @@
 						type: Object,
 						computed: '_getToken(token)'
 					},
-					backButtonClass: {
-						type: String,
-						computed: '_backButtonClass(returnUrl)'
-					},
-					backTextClass: {
-						type: String,
-						computed: '_backTextClass(returnUrl)'
-					},
+		
 					// holds the address of the page that launched ASV
 					// The "back to content home" and "I'm done" buttons
 					// will take the user to this address.
@@ -248,6 +234,17 @@
 			static get observers() {
 				return ['_initialize(href)'];
 			}
+			ready() {
+				super.ready();
+				const styles = JSON.parse(document.getElementsByTagName('html')[0].getAttribute('data-asv-css-vars'));
+				const navbarstyles = JSON.parse(document.getElementsByTagName('html')[0].getAttribute('data-css-vars'));
+				this.updateStyles(
+					styles
+				);
+				this.updateStyles(
+					navbarstyles
+				);
+			}
 			_initialize(href) {
 
 				// change the current address to display the url of the item being currently viewed.
@@ -260,7 +257,7 @@
 			// be document.referrer.
 			_getReturnUrl(entity) {
 				const defaultReturnUrl = entity && entity.getLinkByRel('https://sequences.api.brightspace.com/rels/default-return-url') || '';
-				return this.returnUrl || defaultReturnUrl || document.referrer || '';
+				return this.returnUrl || defaultReturnUrl && defaultReturnUrl.href || document.referrer || '';
 			}
 			connectedCallback() {
 				super.connectedCallback();
@@ -317,16 +314,7 @@
 			_getToken(token) {
 				return () => { return Promise.resolve(token); };
 			}
-			_backButtonClass(returnUrl) {
-				return !returnUrl
-					? 'back-icon hide'
-					: 'back-icon';
-			}
-			_backTextClass(returnUrl) {
-				return !returnUrl
-					? ''
-					: 'back-text';
-			}
+		
 			_toggleSlideSidebar() {
 				this.$.sidebar.classList.toggle('offscreen');
 			}
