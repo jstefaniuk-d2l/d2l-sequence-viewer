@@ -258,7 +258,7 @@
 			// be document.referrer.
 			_getReturnUrl(entity) {
 				const defaultReturnUrl = entity && entity.getLinkByRel('https://sequences.api.brightspace.com/rels/default-return-url') || '';
-				return this.returnUrl || document.referrer || defaultReturnUrl && defaultReturnUrl.href || '';
+				return this.returnUrl || defaultReturnUrl && defaultReturnUrl.href || document.referrer || '';
 			}
 			connectedCallback() {
 				super.connectedCallback();
