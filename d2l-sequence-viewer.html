@@ -247,11 +247,15 @@
 				);
 			}
 			_initialize(href) {
-
 				// change the current address to display the url of the item being currently viewed.
 				history.pushState({
-					title: this.title,
+					href: href,
 				}, this.title, '?url=' + encodeURIComponent(href) || '');
+
+				this._onPopStateListener = window.addEventListener('popstate', (event) => {
+					this.href = event.state.href;
+					event.preventDefault();
+				});
 			}
 			// if a return-url parameter was passed when creating the element
 			// then returnUrl should have that value. If not, returnUrl should
