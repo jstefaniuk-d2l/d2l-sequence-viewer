@@ -250,11 +250,15 @@
 				);
 			}
 			_initialize(href) {
-
 				// change the current address to display the url of the item being currently viewed.
 				history.pushState({
-					title: this.title,
+					href: href,
 				}, this.title, '?url=' + encodeURIComponent(href) || '');
+
+				this._onPopStateListener = window.addEventListener('popstate', (event) => {
+					this.href = event.state.href;
+					event.preventDefault();
+				});
 			}
 			_getBackToContentLink(entity) {
 				const defaultReturnUrl = entity && entity.getLinkByRel('https://sequences.api.brightspace.com/rels/default-return-url') || '';
