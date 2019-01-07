@@ -205,7 +205,8 @@
 					},
 					title: {
 						type: Object,
-						computed: '_getTitle(entity)'
+						computed: '_getTitle(entity)',
+						observer: '_titleChanged'
 					},
 					getToken: {
 						type: Object,
@@ -226,7 +227,7 @@
 				};
 			}
 			static get observers() {
-				return ['_initialize(href)'];
+				return ['_pushState(href)'];
 			}
 			ready() {
 				super.ready();
@@ -239,16 +240,24 @@
 					navbarstyles
 				);
 			}
-			_initialize(href) {
-				// change the current address to display the url of the item being currently viewed.
-				history.pushState({
+			_titleChanged(title) {
+				document.title = title;
+			}
+			_pushState(href) {
+				const stateObject = {
 					href: href,
-				}, this.title, '?url=' + encodeURIComponent(href) || '');
-
-				this._onPopStateListener = window.addEventListener('popstate', (event) => {
-					this.href = event.state.href;
-					event.preventDefault();
-				});
+					app: D2LSequenceViewer.is
+				};
+				// check if history.state belongs to the sequence viewer
+				if (history.state && history.state.app === D2LSequenceViewer.is) {
+					// check if we've already executed pushState for this topic
+					if (history.state.href !== href) {
+						history.pushState(stateObject, null, '?url=' + encodeURIComponent(href) || '');
+					}
+				} else {
+					// if it's the first state being pushed by sequence viewer, use replaceState.
+					history.replaceState(stateObject, null, '?url=' + encodeURIComponent(href) || '');
+				}
 			}
 			_getBackToContentLink(entity) {
 				const defaultReturnUrl = entity && entity.getLinkByRel('https://sequences.api.brightspace.com/rels/default-return-url') || '';
@@ -264,11 +273,18 @@
 				this._blurListener = window.addEventListener('blur', () => {
 					this._closeSlidebar();
 				});
+				this._onPopStateListener = window.addEventListener('popstate', (event) => {
+					if (event.state && event.state.href) {
+						this.href = event.state.href;
+						event.preventDefault();
+					}
+				});
 			}
 			disconnectedCallback() {
 				super.disconnectedCallback();
 				window.removeEventListener('blur', this._blurListener);
 				this._blurListener = null;
+				window.removeEventListener('popstate', this._onPopStateListener);
 			}
 			_closeSlidebar() {
 				setTimeout( () => {
