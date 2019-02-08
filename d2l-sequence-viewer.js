@@ -13,9 +13,11 @@ import 'd2l-navigation/d2l-navigation-button-notification-icon.js';
 import 'd2l-navigation/d2l-navigation-band.js';
 import 'd2l-navigation/d2l-navigation-link-back.js';
 import 'polymer-frau-jwt/frau-jwt-local.js';
+import 'd2l-polymer-siren-behaviors/store/siren-action-behavior.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+
 /*
 * @polymer
 * @extends Polymer.Element
@@ -24,6 +26,7 @@ import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 */
 class D2LSequenceViewer extends mixinBehaviors([
 	D2L.PolymerBehaviors.Siren.EntityBehavior,
+	D2L.PolymerBehaviors.Siren.SirenActionBehaviorImpl,
 	D2L.PolymerBehaviors.SequenceViewer.LocalizeBehavior
 ], PolymerElement) {
 	static get template() {
@@ -197,7 +200,7 @@ class D2LSequenceViewer extends mixinBehaviors([
 		};
 	}
 	static get observers() {
-		return ['_pushState(href)'];
+		return ['_pushState(href)', '_setLastViewedContentObject(entity)'];
 	}
 	ready() {
 		super.ready();
@@ -290,7 +293,6 @@ class D2LSequenceViewer extends mixinBehaviors([
 	_getToken(token) {
 		return () => { return Promise.resolve(token); };
 	}
-
 	_toggleSlideSidebar() {
 		this.$.sidebar.classList.toggle('offscreen');
 		this.$.sidebarHeader.shadowRoot.querySelector('a').focus();
@@ -302,6 +304,20 @@ class D2LSequenceViewer extends mixinBehaviors([
 	_getSequenceEndHref(entity) {
 		const rootHref = this._getRootHref(entity);
 		return rootHref && rootHref + '/end-of-sequence' || '';
+	}
+	_setLastViewedContentObject(entity) {
+		let action;
+		const actionSubEntity = entity && entity.getSubEntityByRel('about');
+
+		if (actionSubEntity) {
+			action = actionSubEntity && actionSubEntity.getActionByName('set-last-viewed-content-object');
+		} else {
+			action = entity && entity.getActionByName('set-last-viewed-content-object');	
+		}
+		
+		if (action) {
+			this.performSirenAction(action);
+		}
 	}
 }
 customElements.define(D2LSequenceViewer.is, D2LSequenceViewer);
