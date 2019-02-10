@@ -312,9 +312,9 @@ class D2LSequenceViewer extends mixinBehaviors([
 		if (actionSubEntity) {
 			action = actionSubEntity && actionSubEntity.getActionByName('set-last-viewed-content-object');
 		} else {
-			action = entity && entity.getActionByName('set-last-viewed-content-object');	
+			action = entity && entity.getActionByName('set-last-viewed-content-object');
 		}
-		
+
 		if (action) {
 			this.performSirenAction(action);
 		}
