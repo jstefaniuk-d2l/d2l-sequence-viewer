@@ -66,7 +66,7 @@ class D2LSequenceViewerHeader extends mixinBehaviors([D2L.PolymerBehaviors.Siren
 				align-items: center;
 			}
 			.col1 {
-				flex: 0 0 40px;
+				flex: 0 0 30px;
 			}
 			.col2 {
 				flex: 0 0 30px;
@@ -78,10 +78,10 @@ class D2LSequenceViewerHeader extends mixinBehaviors([D2L.PolymerBehaviors.Siren
 				flex: 0 0 23px;
 			}
 			.col5 {
-				flex: 0 0 20px;
+				flex: 0 0 8px;
 			}
 			.col6 {
-				flex: 0 0 23px;
+				flex: 0 0 8px;
 			}
 			.col7 {
 				flex: 0 0 165px;
