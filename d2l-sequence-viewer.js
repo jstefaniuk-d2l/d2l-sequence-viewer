@@ -143,7 +143,7 @@ class D2LSequenceViewer extends mixinBehaviors([
 		<div id="sidebar-occlude">
 		</div>
 		<div id="sidebar" class="offscreen">
-			<d2l-sequence-navigator href="{{href}}" token="[[token]]" role="navigation" is-sidebar="true">
+			<d2l-sequence-navigator href="{{href}}" token="[[token]]" role="navigation">
 				<span slot="lesson-header">
 					<d2l-lesson-header id="sidebarHeader" href="[[_rootHref]]" current-activity="{{href}}" token="[[token]]"></d2l-lesson-header>
 				</span>
