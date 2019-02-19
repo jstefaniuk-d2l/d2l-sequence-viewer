@@ -67,7 +67,7 @@ class D2LSequenceViewer extends mixinBehaviors([
 				}
 				#sidebar {
 					overflow-y: auto;
-					width: 330px;
+					width: 380px;
 					height: calc(100% + 56px - 5px);
 					position: fixed;
 					z-index: 1;
@@ -77,9 +77,11 @@ class D2LSequenceViewer extends mixinBehaviors([
 					background: white;
 					left: calc(var(--sidebar-position) - 25px);
 					transition: margin-left 0.5s;
+					padding-left: 25px;
 				}
+				
 				#sidebar.offscreen {
-					margin-left: -400px;
+					margin-left: -475px;
 				}
 				.viewer {
 					position: relative;
@@ -125,6 +127,11 @@ class D2LSequenceViewer extends mixinBehaviors([
 					.viewframe {
 						padding: 0 18px;
 					}
+				}
+				@media(max-width: 405px) {
+					#sidebar {
+						width: calc(100% - 25px);
+					} 
 				}
 			</style>
 		</custom-style>
