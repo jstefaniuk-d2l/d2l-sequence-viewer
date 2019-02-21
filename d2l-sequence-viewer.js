@@ -303,7 +303,6 @@ class D2LSequenceViewer extends mixinBehaviors([
 	}
 	_toggleSlideSidebar() {
 		this.$.sidebar.classList.toggle('offscreen');
-		this.$.sidebarHeader.shadowRoot.querySelector('a').focus();
 	}
 	_getRootHref(entity) {
 		const rootLink = entity && entity.getLinkByRel('https://sequences.api.brightspace.com/rels/sequence-root');
