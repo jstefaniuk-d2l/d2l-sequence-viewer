@@ -312,8 +312,8 @@ class D2LSequenceViewer extends mixinBehaviors([
 		return rootLink && rootLink.href || '';
 	}
 	_getSequenceEndHref(entity) {
-		const rootHref = this._getRootHref(entity);
-		return rootHref && rootHref + '/end-of-sequence' || '';
+		const endOfSequenceLink = entity && entity.getLinkByRel('https://sequences.api.brightspace.com/rels/end-of-sequence');
+		return endOfSequenceLink && endOfSequenceLink.href || '';
 	}
 	_setLastViewedContentObject(entity) {
 		let action;
