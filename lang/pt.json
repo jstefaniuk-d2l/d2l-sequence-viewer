@@ -1,2 +1,8 @@
 {
-}
+    "activity" : "Atividade",
+    "backToContent" : "Voltar ao conteúdo",
+    "endOfSequence" : "Fim da unidade",
+    "goBack" : "Voltar",
+    "toggleNavMenu" : "Alternar barra lateral deslizante de navegação"
+ }
+ 
