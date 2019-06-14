@@ -25,6 +25,7 @@ import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 * @appliesMixin D2L.PolymerBehaviors.Siren.EntityBehavior
 * @appliesMixin D2L.PolymerBehaviors.SequenceViewer.LocalizeBehavior
 */
+
 class D2LSequenceViewer extends mixinBehaviors([
 	D2L.PolymerBehaviors.Siren.EntityBehavior,
 	D2L.PolymerBehaviors.Siren.SirenActionBehaviorImpl,
@@ -96,6 +97,10 @@ class D2LSequenceViewer extends mixinBehaviors([
 					height: calc(100vh - 40px - 8px - 4px);
 					max-width: var(--viewer-max-width);
 					margin: auto;
+					-webkit-transition: all 0.4s ease-in-out;
+					-moz-transition: all 0.4s ease-in-out;
+					-o-transition: all 0.4s ease-in-out;
+					transition: all 0.4s ease-in-out;
 				}
 				.viewframe:focus {
 					outline: none;
@@ -160,7 +165,7 @@ class D2LSequenceViewer extends mixinBehaviors([
 				</span>
 			</d2l-sequence-navigator>
 		</div>
-		<div id="viewframe" class="viewframe" on-click="_closeSlidebar" role="main" tabindex="0">
+		<div id="viewframe" class="viewframe" on-click="_closeSlidebarOnFocusContent" role="main" tabindex="0">
 			<d2l-sequences-content-router id="viewer" class="viewer" on-sequences-return-mixin-click-back="_onClickBack" href="{{href}}" token="[[token]]"></d2l-sequences-content-router>
 		</div>
 `;
@@ -222,6 +227,10 @@ class D2LSequenceViewer extends mixinBehaviors([
 		this.updateStyles(
 			navbarstyles
 		);
+
+		//TODO if user set sidebarOpen
+
+		this._sideBarOpen();
 	}
 	_hrefChanged() {
 		this.$.viewframe.focus();
@@ -256,7 +265,7 @@ class D2LSequenceViewer extends mixinBehaviors([
 		// from our full-screen application.  Currently, the only thing that
 		// can do this is a content iframe.
 		this._blurListener = window.addEventListener('blur', () => {
-			this._closeSlidebar();
+			this._closeSlidebarOnFocusContent();
 		});
 		this._onPopStateListener = window.addEventListener('popstate', (event) => {
 			if (event.state && event.state.href) {
@@ -271,10 +280,10 @@ class D2LSequenceViewer extends mixinBehaviors([
 		this._blurListener = null;
 		window.removeEventListener('popstate', this._onPopStateListener);
 	}
-	_closeSlidebar() {
+	_closeSlidebarOnFocusContent() {
 		setTimeout(() => {
-			if (document.hasFocus()) {
-				this.$.sidebar.classList.add('offscreen');
+			if (document.hasFocus() && window.innerWidth <= 929) {
+				this._sideBarClose();
 			}
 		}, 1);
 	}
@@ -304,8 +313,12 @@ class D2LSequenceViewer extends mixinBehaviors([
 	_getToken(token) {
 		return () => { return Promise.resolve(token); };
 	}
-	_toggleSlideSidebar() {
-		this.$.sidebar.classList.toggle('offscreen');
+	_toggleSlideSidebar(entity) {
+		if (this.$.sidebar.classList.contains('offscreen')) {
+			this._sideBarOpen(entity);
+		} else {
+			this._sideBarClose();
+		}
 	}
 	_getRootHref(entity) {
 		const rootLink = entity && entity.getLinkByRel('https://sequences.api.brightspace.com/rels/sequence-root');
@@ -328,6 +341,23 @@ class D2LSequenceViewer extends mixinBehaviors([
 		if (action) {
 			this.performSirenAction(action);
 		}
+	}
+
+	_sideBarOpen(entity) {
+		// entity && entity.properties && entity.properties.navBar &&
+		if (window.innerWidth > 929) {
+			this.$.viewframe.style.marginLeft = '437px';
+		}
+		else {
+			this.$.viewframe.style.marginLeft = '0px';
+		}
+
+		this.$.sidebar.classList.remove('offscreen');
+	}
+
+	_sideBarClose() {
+		this.$.sidebar.classList.add('offscreen');
+		this.$.viewframe.style.marginLeft = '0px';
 	}
 }
 customElements.define(D2LSequenceViewer.is, D2LSequenceViewer);
