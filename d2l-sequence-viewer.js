@@ -211,11 +211,12 @@ class D2LSequenceViewer extends mixinBehaviors([
 			},
 			_blurListener: {
 				type: Object
-			}
+			},
+			_loaded: Boolean,
 		};
 	}
 	static get observers() {
-		return ['_pushState(href)', '_setLastViewedContentObject(entity)'];
+		return ['_pushState(href)', '_setLastViewedContentObject(entity)', '_onEntityChanged(entity)'];
 	}
 	ready() {
 		super.ready();
@@ -228,9 +229,17 @@ class D2LSequenceViewer extends mixinBehaviors([
 			navbarstyles
 		);
 
-		//TODO if user set sidebarOpen
+	}
 
-		this._sideBarOpen();
+	_onEntityChanged(entity) {
+		//entity is null or not first time loading the page
+		if (!entity || this._loaded) {
+			return;
+		}
+		if (entity && entity.properties && entity.properties.sideNavOpen) {
+			this._sideBarOpen(entity);
+			this._loaded = true;
+		}
 	}
 	_hrefChanged() {
 		this.$.viewframe.focus();
@@ -319,6 +328,7 @@ class D2LSequenceViewer extends mixinBehaviors([
 		} else {
 			this._sideBarClose();
 		}
+		this._updateSideBarStatus(entity);
 	}
 	_getRootHref(entity) {
 		const rootLink = entity && entity.getLinkByRel('https://sequences.api.brightspace.com/rels/sequence-root');
@@ -344,8 +354,9 @@ class D2LSequenceViewer extends mixinBehaviors([
 	}
 
 	_sideBarOpen(entity) {
-		// entity && entity.properties && entity.properties.navBar &&
-		if (window.innerWidth > 929) {
+		if (entity && entity.properties
+			&& entity.properties.sideNavOpen !== undefined
+			&& window.innerWidth > 929) {
 			this.$.viewframe.style.marginLeft = '437px';
 		}
 		else {
@@ -358,6 +369,12 @@ class D2LSequenceViewer extends mixinBehaviors([
 	_sideBarClose() {
 		this.$.sidebar.classList.add('offscreen');
 		this.$.viewframe.style.marginLeft = '0px';
+	}
+
+	_updateSideBarStatus(entity) {
+		if (entity && entity.getActionByName('set-side-nav-status')) {
+			this.performSirenAction(entity.getActionByName('set-side-nav-status'));
+		}
 	}
 }
 customElements.define(D2LSequenceViewer.is, D2LSequenceViewer);
