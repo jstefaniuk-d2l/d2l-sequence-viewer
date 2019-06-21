@@ -58,6 +58,10 @@ describe('d2l-sequence-viewer', () => {
 				const button = elem.shadowRoot.querySelector('d2l-navigation-button-notification-icon');
 				expect( button ).to.exist;
 				expect( sidebar ).to.have.class('offscreen');
+				button.click();
+				expect(sidebar).not.to.have.class('offscreen');
+				button.click();
+				expect(sidebar).to.have.class('offscreen');
 			});
 		});
 
