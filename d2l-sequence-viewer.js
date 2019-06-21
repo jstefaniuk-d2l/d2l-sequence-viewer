@@ -199,6 +199,9 @@ class D2LSequenceViewer extends mixinBehaviors([
 				type: Object,
 				computed: '_getToken(token)'
 			},
+			mEntity:{
+				type: Object
+			},
 			returnUrl: {
 				type: String
 			},
@@ -236,9 +239,13 @@ class D2LSequenceViewer extends mixinBehaviors([
 		if (!entity || this._loaded) {
 			return;
 		}
-		if (entity && entity.properties && entity.properties.sideNavOpen) {
-			this._sideBarOpen(entity);
+
+		if (entity && entity.properties) {
+			this.mEntity = entity; //set entity so updateNavStatus can use the correct entity
 			this._loaded = true;
+			if (entity.properties.sideNavOpen) {
+				this._sideBarOpen(entity);
+			}
 		}
 	}
 	_hrefChanged() {
@@ -322,13 +329,13 @@ class D2LSequenceViewer extends mixinBehaviors([
 	_getToken(token) {
 		return () => { return Promise.resolve(token); };
 	}
-	_toggleSlideSidebar(entity) {
+	_toggleSlideSidebar() {
 		if (this.$.sidebar.classList.contains('offscreen')) {
-			this._sideBarOpen(entity);
+			this._sideBarOpen();
 		} else {
 			this._sideBarClose();
 		}
-		this._updateSideBarStatus(entity);
+		this._updateSideBarStatus(this.mEntity);
 	}
 	_getRootHref(entity) {
 		const rootLink = entity && entity.getLinkByRel('https://sequences.api.brightspace.com/rels/sequence-root');
@@ -353,16 +360,15 @@ class D2LSequenceViewer extends mixinBehaviors([
 		}
 	}
 
-	_sideBarOpen(entity) {
-		if (entity && entity.properties
-			&& entity.properties.sideNavOpen !== undefined
+	_sideBarOpen() {
+		if (this.mEntity && this.mEntity.properties
+			&& this.mEntity.properties.sideNavOpen !== undefined
 			&& window.innerWidth > 929) {
 			this.$.viewframe.style.marginLeft = '437px';
 		}
 		else {
 			this.$.viewframe.style.marginLeft = '0px';
 		}
-
 		this.$.sidebar.classList.remove('offscreen');
 	}
 
@@ -371,9 +377,10 @@ class D2LSequenceViewer extends mixinBehaviors([
 		this.$.viewframe.style.marginLeft = '0px';
 	}
 
-	_updateSideBarStatus(entity) {
-		if (entity && entity.getActionByName('set-side-nav-status')) {
-			this.performSirenAction(entity.getActionByName('set-side-nav-status'));
+	_updateSideBarStatus() {
+		if (this.mEntity && this.mEntity.getActionByName('set-side-nav-status')) {
+			const action = this.mEntity.getActionByName('set-side-nav-status');
+			this.performSirenAction(action);
 		}
 	}
 }
