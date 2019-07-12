@@ -394,10 +394,9 @@ class D2LSequenceViewer extends mixinBehaviors([
 			upLink = (currEntity.getLinkByRel('up') || {}).href;
 			orgLink = (currEntity.getLinkByRel('https://api.brightspace.com/rels/organization') || {}).href;
 		}
-
-		let properties = {};
+		const properties = {};
 		if (prevEntity) {
-			properties = prevEntity.properties;
+			Object.assign(properties, prevEntity.properties);
 		}
 
 		properties.title = currEntity.properties.title;
