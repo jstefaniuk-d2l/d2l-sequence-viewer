@@ -268,7 +268,7 @@ class D2LSequenceViewer extends mixinBehaviors([
 			}
 		}
 
-		await this._setModuleProperties(entity);
+		this._moduleProperties = await this._setModuleProperties(entity);
 	}
 	_hrefChanged() {
 		this.$.viewframe.focus();
@@ -400,7 +400,7 @@ class D2LSequenceViewer extends mixinBehaviors([
 		}
 
 		properties.title = currEntity.properties.title;
-		this._moduleProperties = properties;
+		return properties;
 	}
 
 	_sideBarOpen() {
