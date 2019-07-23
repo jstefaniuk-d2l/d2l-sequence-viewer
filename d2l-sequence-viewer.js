@@ -268,7 +268,7 @@ class D2LSequenceViewer extends mixinBehaviors([
 			}
 		}
 
-		this._moduleProperties = await this._setModuleProperties(entity);
+		this._moduleProperties = await this._fetchModuleProperties(entity);
 	}
 	_hrefChanged() {
 		this.$.viewframe.focus();
@@ -381,7 +381,7 @@ class D2LSequenceViewer extends mixinBehaviors([
 		}
 	}
 
-	async _setModuleProperties(entity) {
+	async _fetchModuleProperties(entity) {
 		let currEntity = entity;
 		let prevEntity, response;
 		let upLink = (currEntity.getLinkByRel('up') || {}).href;
