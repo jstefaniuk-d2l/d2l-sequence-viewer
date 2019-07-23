@@ -268,7 +268,7 @@ class D2LSequenceViewer extends mixinBehaviors([
 			}
 		}
 
-		this._setModuleProperties(entity);
+		await this._setModuleProperties(entity);
 	}
 	_hrefChanged() {
 		this.$.viewframe.focus();
