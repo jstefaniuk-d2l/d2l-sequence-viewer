@@ -281,7 +281,8 @@ class D2LSequenceViewer extends mixinBehaviors([
 				this._sideBarOpen();
 			}
 		}
-		if (!this._moduleProperties) {
+
+		if (!this._moduleProperties.title) {
 			this._setModuleProperties(entity);
 		}
 	}
