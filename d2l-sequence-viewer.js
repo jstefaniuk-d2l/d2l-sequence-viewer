@@ -53,7 +53,7 @@ class D2LSequenceViewer extends mixinBehaviors([
 					position: fixed;
 					top: 4px;
 					width: 100%;
-					height: 30px;
+					height: 50px;
 					z-index: 3;
 					box-shadow: 2px 0px 3px 2px rgba(214,220,229,0.5); /* 50% D6DCE5 */
 					flex-flow: row;
@@ -104,6 +104,8 @@ class D2LSequenceViewer extends mixinBehaviors([
 					-moz-transition: all 0.4s ease-in-out;
 					-o-transition: all 0.4s ease-in-out;
 					transition: all 0.4s ease-in-out;
+					margin-left: var(--d2l-viewframe-margin-left, auto);
+					margin-right: var(--d2l-viewframe-margin-right, auto);
 				}
 				.viewframe:focus {
 					outline: none;
@@ -160,7 +162,7 @@ class D2LSequenceViewer extends mixinBehaviors([
 		</custom-style>
 		<frau-jwt-local token="{{token}}" scope="*:*:* content:files:read content:topics:read content:topics:mark-read"></frau-jwt-local>
 		<d2l-navigation-band></d2l-navigation-band>
-		<d2l-sequence-viewer-header class="topbar" href="{{href}}" token="[[token]]" role="banner" on-iterate="_onIterate">
+		<d2l-sequence-viewer-header class="topbar" href="{{href}}" token="[[token]]" is-sidebar-open="[[_isSidebarOpen]]" role="banner" on-iterate="_onIterate">
 			<span slot="d2l-flyout-menu">
 				<d2l-navigation-button-notification-icon icon="d2l-tier3:menu-hamburger" class="flyout-icon" on-click="_toggleSlideSidebar" aria-label$="[[localize('toggleNavMenu')]]">[[localize('toggleNavMenu')]]
 				</d2l-navigation-button-notification-icon>
@@ -251,6 +253,10 @@ class D2LSequenceViewer extends mixinBehaviors([
 				computed: '_getBackToContentLink(entity)'
 			},
 			_loaded: Boolean,
+			_isSidebarOpen: {
+				type: Boolean,
+				value: false
+			},
 			_blurListener: Function,
 			_onPopStateListener: Function,
 			_resizeNavListener: Function,
@@ -438,22 +444,29 @@ class D2LSequenceViewer extends mixinBehaviors([
 			&& this.mEntity.properties.sideNavOpen !== undefined
 			&& window.innerWidth - offsetWidth > 929) {
 			this.$$('#sidebar').style.width = sidebarWidth + 'px';
-			this.$.viewframe.style.marginLeft = marginLeft;
-			this.$.viewframe.style.marginRight = String(offsetWidth) + 'px';
+			this.style.setProperty('--d2l-viewframe-margin-left', marginLeft);
+			this.style.setProperty('--d2l-viewframe-margin-right', `${String(offsetWidth)}px`);
+			// this.$.viewframe.style.marginLeft = marginLeft;
+			// this.$.viewframe.style.marginRight = String(offsetWidth) + 'px';
 		} else {
 			this.$$('#sidebar').style.width = '310px';
-			this.$.viewframe.style.marginLeft = 'auto';
-			this.$.viewframe.style.marginRight = String(offsetWidth) + 'px';
+			this.style.setProperty('--d2l-viewframe-margin-left', 'auto');
+			this.style.setProperty('--d2l-viewframe-margin-right', `${String(offsetWidth)}px`);
+			// this.$.viewframe.style.marginLeft = 'auto';
+			// this.$.viewframe.style.marginRight = String(offsetWidth) + 'px';
 		}
 		this.$.sidebar.classList.remove('offscreen');
-
+		this._isSidebarOpen = true;
 	}
 
 	_sideBarClose() {
 		const offsetWidth = this.$$('#sidebar-occlude').offsetWidth;
 		this.$.sidebar.classList.add('offscreen');
-		this.$.viewframe.style.marginLeft = 'auto';
-		this.$.viewframe.style.marginRight = String(offsetWidth) + 'px';
+		this.style.setProperty('--d2l-viewframe-margin-left', 'auto');
+		this.style.setProperty('--d2l-viewframe-margin-right', `${String(offsetWidth)}px`);
+		// this.$.viewframe.style.marginLeft = 'auto';
+		// this.$.viewframe.style.marginRight = String(offsetWidth) + 'px';
+		this._isSidebarOpen = false;
 	}
 
 	_resizeSideBar() {

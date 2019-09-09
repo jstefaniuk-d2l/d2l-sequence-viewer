@@ -27,8 +27,6 @@ class D2LSequenceViewerHeader extends mixinBehaviors([D2L.PolymerBehaviors.Siren
 				flex-flow: row wrap;
 				align-items: center;
 				width: 100%;
-				padding-top: 10px;
-				padding-bottom: 10px;
 				background-color: white;
 			}
 			.iterator-icon {
@@ -40,8 +38,10 @@ class D2LSequenceViewerHeader extends mixinBehaviors([D2L.PolymerBehaviors.Siren
 				color: var(--d2l-color-corundum);
 				height: 23px;
 				width: 23px;
+				min-width: 23px;
 				font-size: 0px;
 				display: block;
+				margin: 0 18px 0 18px;
 			}
 			.back-to-module {
 				@apply --d2l-body-small-text;
@@ -49,6 +49,7 @@ class D2LSequenceViewerHeader extends mixinBehaviors([D2L.PolymerBehaviors.Siren
 				white-space: nowrap;
 				text-overflow: ellipsis;
 				padding-left: 8px;
+				margin-left: 18px;
 			}
 			.topic-name {
 				@apply --d2l-body-compact-text;
@@ -61,54 +62,30 @@ class D2LSequenceViewerHeader extends mixinBehaviors([D2L.PolymerBehaviors.Siren
 				flex: 1 1 0px;
 			}
 			.pad-mid {
-				flex: 0 0 1230px;
+				flex: 0 0 1170px;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding: 0 30px 0 30px;
+				margin-left: auto;
+				margin-right: var(--d2l-viewframe-margin-right, auto);
+			}
+			#sidebar, .nav-buttons {
 				display: flex;
 				align-items: center;
 			}
-			.col1 {
-				flex: 0 0 30px;
+			#sidebar {
+				margin-left: 30px;
 			}
-			.col2 {
-				flex: 0 0 30px;
+			:host([is-sidebar-open]) #sidebar {
+				width: 310px;
+				border-right: 1px solid var(--d2l-color-mica);
 			}
-			.col3 {
-				flex: 0 0 20px;
+			.nav-buttons {
+				margin-right: 30px;
 			}
-			.col4 {
-				flex: 0 0 23px;
-			}
-			.col5 {
-				flex: 0 0 8px;
-			}
-			.col6 {
-				flex: 0 0 8px;
-			}
-			.col7 {
-				flex: 0 0 165px;
-			}
-			.col8 {
-				flex: 2 2 200px;
-			}
-			.col9 {
-				flex: 1 1 100px;
-			}
-			.col10 {
-				flex: 0 0 30px;
-			}
-			.col11 {
-				flex: 0 0 20px;
-			}
-			.col12 {
-				flex: 0 0 23px;
-			}
-			.col13 {
-				flex: 0 0 20px;
-			}
-			.col14 {
-				flex: 0 0 30px;
-			}
-			.col15 {
-				flex: 0 0 30px;
+			.nav-buttons > * {
+				margin: 0 18px 0 18px;
 			}
 			@media(max-width: 1230px) {
 				.pad-side {
@@ -124,70 +101,24 @@ class D2LSequenceViewerHeader extends mixinBehaviors([D2L.PolymerBehaviors.Siren
 				.hidden-small {
 					display: none;
 				}
-				.col1 {
-					flex: 0 0 25px;
-				}
-				.col3 {
-					flex: 0 0 0px;
-				}
-				.col4 {
-					flex: 0 0 0px;
-				}
-				.col5 {
-					flex: 0 0 22px;
-				}
-				.col6 {
-					flex: 0 0 0px;
-				}
-				.col7{
-					flex: 0 0 125px;
-				}
-				.col8 {
-					flex: 1 1 0px;
-				}
-				.col9 {
-					flex: 0 0 22px;
-				}
-				.col11 {
-					flex: 0 0 0px;
-				}
-				.col13 {
-					flex: 0 0 0px;
-				}
-				.col15 {
-					flex: 0 0 15px;
-				}
 			}
 			h1 {
 				@apply --d2l-body-compact-text;
 			}
 		</style>
-			<div class="pad-side"></div>
-			<div class="pad-mid">
-				<div class="col1"></div>
-					<slot name="d2l-flyout-menu" d2l-flyout-menu="" class="col2"></slot>
-				<div class="col3"></div>
-				<d2l-icon class="flyout-divider hidden-small col4" icon="d2l-tier2:divider-big"></d2l-icon>
-				<div class="col5"></div>
-				<div class="hidden-small col6">
-				</div>
-				<div class="back-to-module col7">
+		<div class="pad-mid">
+			<div id="sidebar">
+				<div class="back-to-module">
 					<slot name="d2l-back-to-module"></slot>
 				</div>
-				<div class="topic-name col8 hidden-small">
-				<h1>
-					<d2l-sequences-topic-name id="topicName" href="[[href]]" token="[[token]]"></d2l-sequences-topic-name>
-				</h1>
-				</div>
-				<div class="col9"></div>
-				<d2l-sequences-iterator class="iterator-icon prev-button col10" current-activity="{{href}}" href="[[previousActivityHref]]" token="[[token]]" icon="d2l-tier3:chevron-left-circle" previous=""></d2l-sequences-iterator>
-				<div class="col11"></div>
-				<d2l-icon class="flyout-divider col12" icon="d2l-tier2:divider-big"></d2l-icon>
-				<div class="col13"></div>
-				<d2l-sequences-iterator class="iterator-icon next-button col14" current-activity="{{href}}" href="[[nextActivityHref]]" token="[[token]]" icon="d2l-tier3:chevron-right-circle" next=""></d2l-sequences-iterator>
-				<div class="col15"></div>
+				<d2l-icon class="flyout-divider hidden-small" icon="d2l-tier2:divider-big"></d2l-icon>
+				<slot name="d2l-flyout-menu" d2l-flyout-menu=""></slot>
 			</div>
-			<div class="pad-side"></div>
+			<div class="nav-buttons">
+				<d2l-sequences-iterator class="iterator-icon prev-button" current-activity="{{href}}" href="[[previousActivityHref]]" token="[[token]]" icon="d2l-tier3:chevron-left-circle" previous=""></d2l-sequences-iterator>
+				<d2l-sequences-iterator class="iterator-icon next-button" current-activity="{{href}}" href="[[nextActivityHref]]" token="[[token]]" icon="d2l-tier3:chevron-right-circle" next=""></d2l-sequences-iterator>
+			</div>
+		</div>
 `;
 	}
 
@@ -208,21 +139,17 @@ class D2LSequenceViewerHeader extends mixinBehaviors([D2L.PolymerBehaviors.Siren
 			previousActivityHref: {
 				type: String,
 				computed: '_getPreviousActivityHref(entity)'
-			}
+			},
+			isSidebarOpen: {
+				type: Boolean,
+				reflectToAttribute: true
+			},
 		};
-	}
-	static get observers() {
-		return ['_announceTopic(entity)'];
 	}
 	connectedCallback() {
 		super.connectedCallback();
 		IronA11yAnnouncer.requestAvailability();
 		this.mode = 'polite';
-	}
-	_announceTopic() {
-		this.fire('iron-announce', {
-			text: this.$.topicName.innerText.trim()
-		});
 	}
 
 	_getNextActivityHref(entity) {
