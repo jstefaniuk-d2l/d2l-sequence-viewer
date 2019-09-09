@@ -69,7 +69,7 @@ class D2LSequenceViewerHeader extends mixinBehaviors([D2L.PolymerBehaviors.Siren
 				flex: 0 0 30px;
 			}
 			.col2 {
-				flex: 0 0 30px;
+				flex: 0 0 165px;
 			}
 			.col3 {
 				flex: 0 0 20px;
@@ -84,7 +84,7 @@ class D2LSequenceViewerHeader extends mixinBehaviors([D2L.PolymerBehaviors.Siren
 				flex: 0 0 8px;
 			}
 			.col7 {
-				flex: 0 0 165px;
+				flex: 0 0 30px;
 			}
 			.col8 {
 				flex: 2 2 200px;
@@ -127,6 +127,9 @@ class D2LSequenceViewerHeader extends mixinBehaviors([D2L.PolymerBehaviors.Siren
 				.col1 {
 					flex: 0 0 25px;
 				}
+				.col2{
+					flex: 0 0 125px;
+				}
 				.col3 {
 					flex: 0 0 0px;
 				}
@@ -138,9 +141,6 @@ class D2LSequenceViewerHeader extends mixinBehaviors([D2L.PolymerBehaviors.Siren
 				}
 				.col6 {
 					flex: 0 0 0px;
-				}
-				.col7{
-					flex: 0 0 125px;
 				}
 				.col8 {
 					flex: 1 1 0px;
@@ -165,26 +165,24 @@ class D2LSequenceViewerHeader extends mixinBehaviors([D2L.PolymerBehaviors.Siren
 			<div class="pad-side"></div>
 			<div class="pad-mid">
 				<div class="col1"></div>
-					<slot name="d2l-flyout-menu" d2l-flyout-menu="" class="col2"></slot>
+				<div class="back-to-module col2">
+					<slot name="d2l-back-to-module"></slot>
+				</div>
 				<div class="col3"></div>
 				<d2l-icon class="flyout-divider hidden-small col4" icon="d2l-tier2:divider-big"></d2l-icon>
 				<div class="col5"></div>
 				<div class="hidden-small col6">
 				</div>
-				<div class="back-to-module col7">
-					<slot name="d2l-back-to-module"></slot>
-				</div>
+
+				<slot name="d2l-flyout-menu" d2l-flyout-menu="" class="col7"></slot>
 				<div class="topic-name col8 hidden-small">
-				<h1>
-					<d2l-sequences-topic-name id="topicName" href="[[href]]" token="[[token]]"></d2l-sequences-topic-name>
-				</h1>
 				</div>
 				<div class="col9"></div>
 				<d2l-sequences-iterator class="iterator-icon prev-button col10" current-activity="{{href}}" href="[[previousActivityHref]]" token="[[token]]" icon="d2l-tier3:chevron-left-circle" previous=""></d2l-sequences-iterator>
 				<div class="col11"></div>
-				<d2l-icon class="flyout-divider col12" icon="d2l-tier2:divider-big"></d2l-icon>
-				<div class="col13"></div>
-				<d2l-sequences-iterator class="iterator-icon next-button col14" current-activity="{{href}}" href="[[nextActivityHref]]" token="[[token]]" icon="d2l-tier3:chevron-right-circle" next=""></d2l-sequences-iterator>
+				<div class="col12"></div>
+				<d2l-sequences-iterator class="iterator-icon next-button col13" current-activity="{{href}}" href="[[nextActivityHref]]" token="[[token]]" icon="d2l-tier3:chevron-right-circle" next=""></d2l-sequences-iterator>
+				<div class="col14"></div>
 				<div class="col15"></div>
 			</div>
 			<div class="pad-side"></div>
@@ -211,18 +209,10 @@ class D2LSequenceViewerHeader extends mixinBehaviors([D2L.PolymerBehaviors.Siren
 			}
 		};
 	}
-	static get observers() {
-		return ['_announceTopic(entity)'];
-	}
 	connectedCallback() {
 		super.connectedCallback();
 		IronA11yAnnouncer.requestAvailability();
 		this.mode = 'polite';
-	}
-	_announceTopic() {
-		this.fire('iron-announce', {
-			text: this.$.topicName.innerText.trim()
-		});
 	}
 
 	_getNextActivityHref(entity) {

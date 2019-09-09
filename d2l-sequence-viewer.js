@@ -282,6 +282,11 @@ class D2LSequenceViewer extends mixinBehaviors([
 		if (!entity || this._loaded) {
 			return;
 		}
+		// set viewer margins for animation purposes
+		const offsetWidth = this.$$('#sidebar-occlude').offsetWidth;
+		this.$.viewframe.style.marginRight = `${String(offsetWidth)}px`;
+		this.$.viewframe.style.marginLeft = `${String(offsetWidth)}px`;
+
 		// topic entity need to fetch module entity
 		if (entity.hasClass('sequenced-activity')) {
 			const moduleLink = entity.getLinkByRel('up').href;
@@ -433,27 +438,27 @@ class D2LSequenceViewer extends mixinBehaviors([
 		const maxWidth = 1170;
 		const sidebarWidth = Math.round((this.offsetWidth <= maxWidth ? this.offsetWidth : maxWidth) / 3);
 		const offsetWidth = this.$$('#sidebar-occlude').offsetWidth;
+		this.$.viewframe.style.marginLeft = `${String(offsetWidth)}px`;
 		const marginLeft = `${sidebarWidth + offsetWidth}px`;
 		if (this.mEntity && this.mEntity.properties
 			&& this.mEntity.properties.sideNavOpen !== undefined
 			&& window.innerWidth - offsetWidth > 929) {
 			this.$$('#sidebar').style.width = sidebarWidth + 'px';
 			this.$.viewframe.style.marginLeft = marginLeft;
-			this.$.viewframe.style.marginRight = String(offsetWidth) + 'px';
+			this.$.viewframe.style.marginRight = `${String(offsetWidth)}px`;
 		} else {
 			this.$$('#sidebar').style.width = '310px';
-			this.$.viewframe.style.marginLeft = 'auto';
-			this.$.viewframe.style.marginRight = String(offsetWidth) + 'px';
+			this.$.viewframe.style.marginLeft = `${String(offsetWidth)}px`;
+			this.$.viewframe.style.marginRight = `${String(offsetWidth)}px`;
 		}
 		this.$.sidebar.classList.remove('offscreen');
-
 	}
 
 	_sideBarClose() {
 		const offsetWidth = this.$$('#sidebar-occlude').offsetWidth;
 		this.$.sidebar.classList.add('offscreen');
-		this.$.viewframe.style.marginLeft = 'auto';
-		this.$.viewframe.style.marginRight = String(offsetWidth) + 'px';
+		this.$.viewframe.style.marginLeft = `${String(offsetWidth)}px`;
+		this.$.viewframe.style.marginRight = `${String(offsetWidth)}px`;
 	}
 
 	_resizeSideBar() {
