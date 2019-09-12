@@ -60,7 +60,6 @@
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
     "babelify": "^8.0.0",
-    "bower-art-resolver": "^2.0.9",
     "browserify": "^16.2.2",
     "chai-dom": "^1.8.0",
     "eslint": "^4.2.0",
