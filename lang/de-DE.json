@@ -1,7 +1,9 @@
 {
    "activity" : "Aktivität",
    "backToContent" : "Zurück zum Inhalt",
+   "contentLinkText": "Klicken Sie hier, um neue Inhalte aufzurufen",
    "endOfSequence" : "Ende der Einheit",
    "goBack" : "Zurück",
+   "newContentAvailable": "Neue Inhalte sind jetzt verfügbar!",
    "toggleNavMenu" : "Navigationsfolie aus Seitenleiste aktivieren"
 }

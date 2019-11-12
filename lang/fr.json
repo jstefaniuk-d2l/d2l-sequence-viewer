@@ -1,8 +1,10 @@
 {
     "activity" : "Actividad",
     "backToContent" : "Retour au contenu",
+    "contentLinkText": "Cliquer pour voir le nouveau contenu.",
     "endOfSequence" : "Término de la unidad",
     "goBack" : "Regresar",
-    "toggleNavMenu" : "Toggle navigational slide out sidebar"
+    "newContentAvailable": "Le nouveau contenu est maintenant disponible!",
+    "toggleNavMenu" : "Activer/Désactiver la barre de navigation latérale coulissante"
  }
  
