@@ -1,6 +1,7 @@
 {
    "activity" : "Aktivitet",
    "backToContent" : "Tillbaka till innehåll",
+   "close": "Stäng",
    "contentLinkText": "Klicka för att gå till nytt innehåll",
    "endOfSequence" : "Slutet av en period",
    "goBack" : "Gå tillbaka",

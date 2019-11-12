@@ -1,6 +1,7 @@
 {
    "activity" : "活動",
    "backToContent" : "返回「內容」",
+   "close": "關閉",
    "contentLinkText": "按一下以造訪新內容",
    "endOfSequence" : "單元結束",
    "goBack" : "返回",

@@ -2,6 +2,7 @@
 	"ar-AE": {
 		"activity": "النشاط",
 		"backToContent": "العودة إلى المحتوى",
+		"close": "إغلاق",
 		"contentLinkText": "انقر للانتقال إلى المحتوى الجديد",
 		"endOfSequence": "نهاية الوحدة",
 		"goBack": "العودة للخلف",
@@ -11,6 +12,7 @@
 	"ar": {
 		"activity": "النشاط",
 		"backToContent": "العودة إلى المحتوى",
+		"close": "إغلاق",
 		"contentLinkText": "انقر للانتقال إلى المحتوى الجديد",
 		"endOfSequence": "نهاية الوحدة",
 		"goBack": "العودة للخلف",
@@ -27,6 +29,7 @@
 	"de-DE": {
 		"activity": "Aktivität",
 		"backToContent": "Zurück zum Inhalt",
+		"close": "Schließen",
 		"contentLinkText": "Klicken Sie hier, um neue Inhalte aufzurufen",
 		"endOfSequence": "Ende der Einheit",
 		"goBack": "Zurück",
@@ -36,6 +39,7 @@
 	"de": {
 		"activity": "Aktivität",
 		"backToContent": "Zurück zum Inhalt",
+		"close": "Schließen",
 		"contentLinkText": "Klicken Sie hier, um neue Inhalte aufzurufen",
 		"endOfSequence": "Ende der Einheit",
 		"goBack": "Zurück",
@@ -55,6 +59,7 @@
 	"es-ES": {
 		"activity": "Actividad",
 		"backToContent": "Back to Content",
+		"close": "Cerrar",
 		"contentLinkText": "Haga clic para visitar el nuevo contenido.",
 		"endOfSequence": "Término de la unidad",
 		"goBack": "Regresar",
@@ -64,6 +69,7 @@
 	"es": {
 		"activity": "Actividad",
 		"backToContent": "Back to Content",
+		"close": "Cerrar",
 		"contentLinkText": "Haga clic para visitar el nuevo contenido.",
 		"endOfSequence": "Término de la unidad",
 		"goBack": "Regresar",
@@ -73,6 +79,7 @@
 	"fr-FR": {
 		"activity": "Activité",
 		"backToContent": "Retour au contenu",
+		"close": "Fermer",
 		"contentLinkText": "Cliquer pour voir le nouveau contenu.",
 		"endOfSequence": "Fin de l’unité",
 		"goBack": "Retour",
@@ -82,6 +89,7 @@
 	"fr": {
 		"activity": "Actividad",
 		"backToContent": "Retour au contenu",
+		"close": "Fermer",
 		"contentLinkText": "Cliquer pour voir le nouveau contenu.",
 		"endOfSequence": "Término de la unidad",
 		"goBack": "Regresar",
@@ -91,6 +99,7 @@
 	"ja-JP": {
 		"activity": "アクティビティ",
 		"backToContent": "コンテンツに戻る",
+		"close": "閉じる",
 		"contentLinkText": "クリックして新しいコンテンツにアクセス",
 		"endOfSequence": "ユニットの末尾",
 		"goBack": "戻る",
@@ -100,6 +109,7 @@
 	"ja": {
 		"activity": "アクティビティ",
 		"backToContent": "コンテンツに戻る",
+		"close": "閉じる",
 		"contentLinkText": "クリックして新しいコンテンツにアクセス",
 		"endOfSequence": "ユニットの末尾",
 		"goBack": "戻る",
@@ -109,6 +119,7 @@
 	"ko-KR": {
 		"activity": "활동",
 		"backToContent": "콘텐츠로 돌아가기",
+		"close": "닫기",
 		"contentLinkText": "새 콘텐츠를 보려면 클릭하십시오.",
 		"endOfSequence": "단위 종료",
 		"goBack": "돌아가기",
@@ -118,6 +129,7 @@
 	"ko": {
 		"activity": "활동",
 		"backToContent": "콘텐츠로 돌아가기",
+		"close": "닫기",
 		"contentLinkText": "새 콘텐츠를 보려면 클릭하십시오.",
 		"endOfSequence": "단위 종료",
 		"goBack": "돌아가기",
@@ -128,6 +140,7 @@
 	"nl-NL": {
 		"activity": "Activiteit",
 		"backToContent": "Terug naar inhoud",
+		"close": "Sluiten",
 		"contentLinkText": "Klik om naar nieuwe content te gaan",
 		"endOfSequence": "Einde van eenheid",
 		"goBack": "Ga terug",
@@ -137,6 +150,7 @@
 	"nl": {
 		"activity": "Activiteit",
 		"backToContent": "Terug naar inhoud",
+		"close": "Sluiten",
 		"contentLinkText": "Klik om naar nieuwe content te gaan",
 		"endOfSequence": "Einde van eenheid",
 		"goBack": "Ga terug",
@@ -146,6 +160,7 @@
 	"pt-PT": {
 		"activity": "Atividade",
 		"backToContent": "Voltar ao conteúdo",
+		"close": "Fechar",
 		"contentLinkText": "Clique para visitar o novo conteúdo",
 		"endOfSequence": "Fim da unidade",
 		"goBack": "Voltar",
@@ -155,6 +170,7 @@
 	"pt": {
 		"activity": "Atividade",
 		"backToContent": "Voltar ao conteúdo",
+		"close": "Fechar",
 		"contentLinkText": "Clique para visitar o novo conteúdo",
 		"endOfSequence": "Fim da unidade",
 		"goBack": "Voltar",
@@ -164,6 +180,7 @@
 	"sv-SE": {
 		"activity": "Aktivitet",
 		"backToContent": "Tillbaka till innehåll",
+		"close": "Stäng",
 		"contentLinkText": "Klicka för att gå till nytt innehåll",
 		"endOfSequence": "Slutet av en period",
 		"goBack": "Gå tillbaka",
@@ -173,6 +190,7 @@
 	"sv": {
 		"activity": "Aktivitet",
 		"backToContent": "Tillbaka till innehåll",
+		"close": "Stäng",
 		"contentLinkText": "Klicka för att gå till nytt innehåll",
 		"endOfSequence": "Slutet av en period",
 		"goBack": "Gå tillbaka",
@@ -182,6 +200,7 @@
 	"tr-TR": {
 		"activity": "Etkinlik",
 		"backToContent": "İçeriğe Dön",
+		"close": "Kapat",
 		"contentLinkText": "Yeni içeriği ziyaret etmek için tıklayın",
 		"endOfSequence": "Ünite Sonu",
 		"goBack": "Geri Dön",
@@ -191,6 +210,7 @@
 	"tr": {
 		"activity": "Etkinlik",
 		"backToContent": "İçeriğe Dön",
+		"close": "Kapat",
 		"contentLinkText": "Yeni içeriği ziyaret etmek için tıklayın",
 		"endOfSequence": "Ünite Sonu",
 		"goBack": "Geri Dön",
@@ -200,6 +220,7 @@
 	"zh-CN": {
 		"activity": "活动",
 		"backToContent": "返回目录",
+		"close": "关闭",
 		"contentLinkText": "单击以访问新内容",
 		"endOfSequence": "单元结束",
 		"goBack": "返回",
@@ -209,6 +230,7 @@
 	"zh-TW": {
 		"activity": "活動",
 		"backToContent": "返回「內容」",
+		"close": "關閉",
 		"contentLinkText": "按一下以造訪新內容",
 		"endOfSequence": "單元結束",
 		"goBack": "返回",
@@ -218,6 +240,7 @@
 	"zh": {
 		"activity": "活动",
 		"backToContent": "返回目录",
+		"close": "关闭",
 		"contentLinkText": "单击以访问新内容",
 		"endOfSequence": "单元结束",
 		"goBack": "返回",

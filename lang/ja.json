@@ -1,6 +1,7 @@
 {
     "activity" : "アクティビティ",
     "backToContent" : "コンテンツに戻る",
+    "close": "閉じる",
     "contentLinkText": "クリックして新しいコンテンツにアクセス",
     "endOfSequence" : "ユニットの末尾",
     "goBack" : "戻る",
