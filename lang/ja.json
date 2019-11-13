@@ -1,8 +1,11 @@
 {
     "activity" : "アクティビティ",
     "backToContent" : "コンテンツに戻る",
+    "close": "閉じる",
+    "contentLinkText": "クリックして新しいコンテンツにアクセス",
     "endOfSequence" : "ユニットの末尾",
     "goBack" : "戻る",
+    "newContentAvailable": "新しいコンテンツが使用可能になりました。",
     "toggleNavMenu" : "ナビゲーションのスライドアウトサイドバーの切り替え"
  }
  
