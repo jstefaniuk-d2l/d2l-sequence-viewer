@@ -231,13 +231,16 @@ class D2LSequenceViewerNewContentAlert extends mixinBehaviors([
 				.then(({ entity }) => {
 					if (entity.properties.newConditionsSetsAreMet) {
 						const newContentEntities = entity.getSubEntitiesByRel('newly-released-object');
-						const newContent = newContentEntities.map(content => {
-							return {
-								href: content.getLinkByRel('self').href,
-								name: content.properties.name
-							};
-						});
-						this._newContent = this._newContent.concat(newContent);
+						const newContent = newContentEntities
+							.map(content => {
+								return {
+									href: content.getLinkByRel('self').href,
+									name: content.properties.name
+								};
+							});
+
+						this._newContent = [...this._newContent, ...newContent]
+							.filter((content, index, self) => self.findIndex(c => c.href === content.href) === index);
 					}
 
 					this.latestMetSetEndpoint = entity.getLinkByRel('next').href;
