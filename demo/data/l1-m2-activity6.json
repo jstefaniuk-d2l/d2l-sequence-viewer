@@ -81,16 +81,6 @@
 						},
 						{
 							"class": [
-								"view"
-							],
-							"rel": [
-								"alternate"
-							],
-							"type": "application/pdf",
-							"href": "https://qa108813649g.bspc.com/d2l/le/content/123187/viewContent/104495/View"
-						},
-						{
-							"class": [
 								"download"
 							],
 							"rel": [
@@ -98,6 +88,16 @@
 							],
 							"type": "application/pdf",
 							"href": "https://qa108813649g.bspc.com/d2l/api/le/1.12/123187/content/topics/104495/file?stream=false"
+						},
+						{
+							"class": [
+								"embed"
+							],
+							"rel": [
+								"alternate"
+							],
+							"type": "application/pdf",
+							"href": "./annual_report_2009.pdf"
 						}
 					]
 				},
@@ -121,16 +121,6 @@
 				}
 			],
 			"actions": [
-				{
-					"href": "https://b6aed422-b9f9-41dd-a542-59895e558b60.sequences.api.dev.brightspace.com/123187/activity/104495/view",
-					"name": "view-activity",
-					"method": "POST"
-				},
-				{
-					"href": "https://b6aed422-b9f9-41dd-a542-59895e558b60.sequences.api.dev.brightspace.com/123187/activity/104495/view",
-					"name": "view-activity-duration",
-					"method": "PUT"
-				}
 			]
 		}
 	],
