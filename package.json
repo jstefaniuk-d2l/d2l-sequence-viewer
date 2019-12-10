@@ -104,7 +104,7 @@
     "d2l-offscreen": "BrightspaceUI/offscreen#semver:^4",
     "d2l-poller": "Brightspace/d2l-poller#semver:^3",
     "d2l-polymer-siren-behaviors": "Brightspace/polymer-siren-behaviors#semver:^1",
-    "d2l-sequences": "github:BrightspaceHypermediaComponents/sequences#24da2cac97bcc0ad0e4e4619e9e94d5be3d5a4ec",
+    "d2l-sequences": "github:BrightspaceHypermediaComponents/sequences#c18ebe7ab9fb2bfac3a11a44741cb57676d624d5",
     "d2l-telemetry-browser-client": "Brightspace/d2l-telemetry-browser-client#semver:^1",
     "d2l-typography": "BrightspaceUI/typography#semver:^7",
     "polymer-frau-jwt": "Brightspace/polymer-frau-jwt#semver:^1"
