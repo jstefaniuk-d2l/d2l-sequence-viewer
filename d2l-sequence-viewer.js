@@ -47,7 +47,11 @@ class D2LSequenceViewer extends mixinBehaviors([
 					@apply --d2l-body-standard-text;
 					position: relative;
 					width: 100%;
-					height: 100%;
+					display: flex;
+					flex-direction: column;
+					min-width: 100vw;
+					height: 100vh;
+					overflow: hidden;
 				}
 				.back-icon {
 					padding-bottom: 0.2rem;
@@ -101,13 +105,14 @@ class D2LSequenceViewer extends mixinBehaviors([
 				}
 				.viewframe {
 					padding: 24px 30px 0 30px;
-					height: calc(100vh - 40px - 8px - 4px - 24px);
 					max-width: var(--viewer-max-width);
 					margin: auto;
 					-webkit-transition: all 0.4s ease-in-out;
 					-moz-transition: all 0.4s ease-in-out;
 					-o-transition: all 0.4s ease-in-out;
 					transition: all 0.4s ease-in-out;
+					flex: 1 1 0px;
+					width: 80%;
 				}
 				.viewframe:focus {
 					outline: none;
